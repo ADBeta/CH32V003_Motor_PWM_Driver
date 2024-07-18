@@ -1,0 +1,4 @@
+(sym_lib_table
+  (version 7)
+  (lib (name "FQD50N06")(type "KiCad")(uri "${KIPRJMOD}/Symbols/FQD50N06.kicad_sym")(options "")(descr ""))
+)
