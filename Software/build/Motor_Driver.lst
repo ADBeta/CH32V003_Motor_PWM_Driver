@@ -62,7 +62,7 @@ Disassembly of section .text:
   da:	c110                	sw	a2,0(a0)
   dc:	0511                	addi	a0,a0,4
   de:	feb54ee3          	blt	a0,a1,da <handle_reset+0x3a>
-  e2:	23400513          	li	a0,564
+  e2:	23000513          	li	a0,560
   e6:	20000597          	auipc	a1,0x20000
   ea:	f1a58593          	addi	a1,a1,-230 # 20000000 <_data_vma>
   ee:	20000617          	auipc	a2,0x20000
@@ -168,22 +168,25 @@ int main()
 	// Reset TIM2, Inits all registers
 	RCC->APB1PRSTR |= RCC_APB1Periph_TIM2;
  1c4:	4b98                	lw	a4,16(a5)
- 1c6:	00176713          	ori	a4,a4,1
- 1ca:	cb98                	sw	a4,16(a5)
-	RCC->APB1PRSTR &= ~RCC_APB1Periph_TIM2;
- 1cc:	4b98                	lw	a4,16(a5)
- 1ce:	9b79                	andi	a4,a4,-2
- 1d0:	cb98                	sw	a4,16(a5)
 
 	// NOTE: 190KHz 80%
 	// Set Prescaler (INPUT / 0)
 	TIM2->PSC = 0x0000;
- 1d2:	400007b7          	lui	a5,0x40000
- 1d6:	02079423          	sh	zero,40(a5) # 40000028 <_eusrstack+0x1ffff828>
 	// Set PWM total cycle width
 	TIM2->ATRLR = 255;
- 1da:	0ff00713          	li	a4,255
- 1de:	02e79623          	sh	a4,44(a5)
+ 1c6:	0ff00693          	li	a3,255
+	RCC->APB1PRSTR |= RCC_APB1Periph_TIM2;
+ 1ca:	00176713          	ori	a4,a4,1
+ 1ce:	cb98                	sw	a4,16(a5)
+	RCC->APB1PRSTR &= ~RCC_APB1Periph_TIM2;
+ 1d0:	4b98                	lw	a4,16(a5)
+ 1d2:	9b79                	andi	a4,a4,-2
+ 1d4:	cb98                	sw	a4,16(a5)
+	TIM2->PSC = 0x0000;
+ 1d6:	400007b7          	lui	a5,0x40000
+ 1da:	02079423          	sh	zero,40(a5) # 40000028 <_eusrstack+0x1ffff828>
+	TIM2->ATRLR = 255;
+ 1de:	02d79623          	sh	a3,44(a5)
 
 	// Set the Compare Capture Register
 	// TIM2_OC1M = 0b110 - PWM Mode 1
@@ -225,10 +228,9 @@ int main()
 
 	
 
-	TIM2->CH1CVR = 64;
- 22a:	04000713          	li	a4,64
- 22e:	dbd8                	sw	a4,52(a5)
+	TIM2->CH1CVR = 255;
+ 22a:	dbd4                	sw	a3,52(a5)
 
 	while(1) {
- 230:	a001                	j	230 <main+0xa4>
+ 22c:	a001                	j	22c <main+0xa0>
 	...

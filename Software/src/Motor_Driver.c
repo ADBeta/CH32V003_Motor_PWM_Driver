@@ -1,6 +1,7 @@
 #include "ch32v003fun.h"
 #include <stdio.h>
 
+// TODO: Figure out how to change duty cycle
 
 int main()
 {
@@ -47,7 +48,7 @@ int main()
 
 	
 
-	TIM2->CH1CVR = 64;
+	TIM2->CH1CVR = 255;
 
 	while(1) {
 
