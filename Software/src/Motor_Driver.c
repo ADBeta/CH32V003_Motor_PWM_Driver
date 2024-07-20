@@ -5,11 +5,15 @@
 *	PWM runs at 190KHz, with 8bits of accuracy
 *
 * Pinout:
-*	D4 - PWM Motor Output
+* 	TODO: UART?
+*
+* 	D3 (A4)		- Analog Potentiometer Input
+*	D4			- PWM Motor Output
 *
 * ADBeta (c)	20 Jul 2024
 ******************************************************************************/
 #include "ch32v003fun.h"
+#include "lib_GPIOCTRL.h"
 
 #include <stdio.h>
 
@@ -29,15 +33,10 @@ void pwm_set_duty(uint32_t duty);
 int main()
 {
 	SystemInit();
-	Delay_Ms( 100 );
-
 	pwm_init();
-	while(1) {
-		for(uint32_t x = 0; x < 255; x++) {
-			pwm_set_duty(x);
-			Delay_Ms(50);
-		}
-	}
+	pwm_set_duty(128);
+
+	while(1) { }
 }
 
 
@@ -48,11 +47,8 @@ void pwm_init(void)
 	// Enable TIM2 Clock	
 	RCC->APB1PCENR |= RCC_APB1Periph_TIM2;
 
-	// Enable GPIOD Clock
-	RCC->APB2PCENR |= RCC_APB2Periph_GPIOD;
-	// Reset PORTD-4, then set to 10-MHz, Push-Pull, Alternate Function
-	GPIOD->CFGLR &= ~(0xf<<(4*4));
-	GPIOD->CFGLR |= (GPIO_Speed_10MHz | GPIO_CNF_OUT_PP_AF)<<(4*4);
+	// Set GPIO-D4 OUTPUT 10MHz, Aleternate Function (Multiplex)
+	gpio_set_mode(GPIO_PD4, OUTPUT_10MHZ_PP | OUTPUT_PP_AF);
 
 	// Reset TIM2, Inits all registers
 	RCC->APB1PRSTR |= RCC_APB1Periph_TIM2;
