@@ -1,56 +1,62 @@
-To configure TIM2 as PWM
+ADC setup
 
-* Enable TIM2 Clock
-* Set TIM2 to be PWM mode
-* Set the GPIO Pin to use as output
-* Set prescaler value
-* Set auto-reload (PWM period)
-* Set Compare val (PWM Duty Cycle)
-* Enable counter
-* Enable Output
+	// Set ACD Clock. Set bits 15:11 to 0 - HBCLK/2 = 24MHz
+	RCC->CFGR0 &= 0xFFFF07FF;
+	
+	// Enable the ADC clock
+	RCC->APB2PCENR |= RCC_APB2Periph_ADC1;
+	
 
 
-Using default TIM2 Layout (CH1ETR)
+	// Set Pin Mode to Analog Input
+	gpio_set_mode( , INPUT_ALALOG);	
+
+	// Reset the ADC, Inits all registers
+	RCC->APB2PRSTR |=  RCC_APB2Periph_ADC1;
+	RCC->APB2PRSTR &= ~RCC_APB2Periph_ADC1;
+	
 
 
-// Enable TIM2 Clock
-RCC->APB1PCENR |= RCC_APB1Periph_TIM2;
-
-// Reset PORTD-4 Flags
-GPIOD->CFGLR &= ~(0xf<<(4*4));
-// Set PORTD-4 to 10MHz Puls-Pull, Alternate Function
-GPIOD->CFGLR |= (GPIO_Speed_10MHz | GPIO_CNF_OUT_PP_AF)<<(4*4);
-
-// Reset TIM2, Inits all registers
-RCC->APB1PRSTR |= RCC_APB1Periph_TIM2;
-RCC->APB1PRSTR &= ~RCC_APB1Periph_TIM2;
-
-// Set Prescaler (INPUT / 0)
-TIM2->PSC = 0x0000;
-// Set PWM total cycle width
-TIM2->ATRLR = 255;
-
-// Set the Compare Capture Register
-// TIM2_OC1M = 0b110 - PWM Mode 1
-// TODO: Why?   Preload Enabled
-TIM2->CHCTLR1 |= TIM_OC1M_2 | TIM_OC1M_1 | TIM_OC1PE;
-
-// Enable auto-reload
-TIM2->CTLR1 |= TIM_ARPE;
-
-// Enable channel output, set polarity ACTIVE_LOW
-TIM2->CCER |= TIM_CC1E | (TIM_CC1P & TIM2_DEFAULT);
-TIM2->CCER |= TIM_CC2E | (TIM_CC2P & TIM2_DEFAULT);
-
-// Initialise Counter
-TIM2->SWEVGR |= TIM_UG;
+	// Set up single conversion on chl 7
+	ADC1->RSQR1 = 0;
+	ADC1->RSQR2 = 0;
+	ADC1->RSQR3 = 7;	// 0-9 for 8 ext inputs and two internals
+	
+	// set sampling time for chl 7
+	ADC1->SAMPTR2 &= ~(ADC_SMP0<<(3*7));
+	ADC1->SAMPTR2 |= 7<<(3*7);	// 0:7 => 3/9/15/30/43/57/73/241 cycles
+	
 
 
-// Enable TIM2
-TIM2->CTLR1 |= TIM_CEN;
 
 
-// Set the pulse width
-case 0: TIM2->CH1CVR = width; break;
+	// Enable the ADC, and set the triggering to external
+	ADC1->CTLR2 |= ADC_ADON | ADC_EXTSEL;
+	
+	// Reset calibration, wait for it to finish
+	ADC1->CTLR2 |= ADC_RSTCAL;
+	while(ADC1->CTLR2 & ADC_RSTCAL);
+	
+	// Calibrate, wait for it to finish
+	ADC1->CTLR2 |= ADC_CAL;
+	while(ADC1->CTLR2 & ADC_CAL);
 
 
+
+
+
+
+/*
+ * start conversion, wait and return result
+ */
+uint16_t adc_get( void )
+{
+	// start sw conversion (auto clears)
+	ADC1->CTLR2 |= ADC_SWSTART;
+	
+	// wait for conversion complete
+	while(!(ADC1->STATR & ADC_EOC));
+	
+	// get result
+	return ADC1->RDATAR;
+}

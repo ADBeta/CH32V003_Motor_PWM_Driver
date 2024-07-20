@@ -18,6 +18,11 @@
 #include <stdio.h>
 
 /*** Forward Declarations ****************************************************/
+/// @breif initialises the ADC for the Potentiometer, and the Current Sensor
+/// @param none
+/// @return none
+void adc_init(void);
+
 /// @breif Initialised TIM2 Channel 1 (D4) To be a PWM Output, active HIGH.
 /// Autoreload is set to 254, Capture mode is 0b111, PWM2.
 /// @param none
@@ -42,6 +47,12 @@ int main()
 
 
 /*** Functions ***************************************************************/
+void adc_init(void)
+{
+
+}
+
+
 void pwm_init(void)
 {
 	// Enable TIM2 Clock	
