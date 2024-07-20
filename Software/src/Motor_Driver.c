@@ -1,26 +1,29 @@
 /******************************************************************************
 * Medium Current PWM Motor Controller, using the CH32V003 MCU
 *
+* Notes:
+*	PWM runs at 190KHz, with 8bits of accuracy
+*
 * Pinout:
-*	 D4 - PWM Motor Output
+*	D4 - PWM Motor Output
 *
 * ADBeta (c)	20 Jul 2024
 ******************************************************************************/
 #include "ch32v003fun.h"
 
-//#include <stdio.h>
+#include <stdio.h>
 
 /*** Forward Declarations ****************************************************/
 /// @breif Initialised TIM2 Channel 1 (D4) To be a PWM Output, active HIGH.
-/// Autoreload is set to 1023, Capture mode is 0b111, PWM2.
+/// Autoreload is set to 254, Capture mode is 0b111, PWM2.
 /// @param none
 /// @return none
 void pwm_init(void);
 
-/// @breif Sets the Duty Cycle of PWM output. Max input is 1024
-/// @param val, input duty cycle value
+/// @breif Sets the Duty Cycle of PWM output. Max input is 255
+/// @param duty, input duty cycle value
 /// @return none
-void pwm_set_duty(uint32_t val);
+void pwm_set_duty(uint32_t duty);
 
 /*** Main ********************************************************************/
 int main()
@@ -28,12 +31,11 @@ int main()
 	SystemInit();
 	Delay_Ms( 100 );
 
-	pwm_init();	
+	pwm_init();
 	while(1) {
-		for(uint32_t x = 0; x < 1024; x++) {
+		for(uint32_t x = 0; x < 255; x++) {
 			pwm_set_duty(x);
-			Delay_Ms(10);
-
+			Delay_Ms(50);
 		}
 	}
 }
@@ -41,8 +43,6 @@ int main()
 
 
 /*** Functions ***************************************************************/
-// TODO: Set mode 1, invert val
-
 void pwm_init(void)
 {
 	// Enable TIM2 Clock	
@@ -61,7 +61,7 @@ void pwm_init(void)
 	// Set Prescaler
 	TIM2->PSC = 0x0000;
 	// Set PWM Max Value (Autoreload Value)
-	TIM2->ATRLR = 1023;
+	TIM2->ATRLR = 254;
 
 	// Set the Compare Capture Register
 	// TIM2_OC1M = 0b111 - PWM Mode 2 - Enable Preload
@@ -81,7 +81,7 @@ void pwm_init(void)
 }
 
 
-void pwm_set_duty(uint32_t val)
+void pwm_set_duty(uint32_t duty)
 {
-	TIM2->CH1CVR = val;
+	TIM2->CH1CVR = duty;
 }

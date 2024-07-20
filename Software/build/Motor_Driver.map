@@ -41,6 +41,7 @@ SYMBOL TABLE:
 0000011a g     F .text	00000002 RCC_IRQHandler
 0000011a g     F .text	00000002 TIM1_TRG_COM_IRQHandler
 0000011a g     F .text	00000002 DMA1_Channel1_IRQHandler
+00001c52  w      .debug_info	00000000 .hidden Motor_Driver.c.37ed4783
 00000e7c  w      .debug_info	00000000 .hidden ch32v003fun.c.524d8b55
 0000011a g     F .text	00000002 DefaultIRQHandler
 20000000 g       .dalign	00000000 _data_vma
@@ -59,7 +60,6 @@ SYMBOL TABLE:
 20000000 g       .data	00000000 _edata
 00000268 g       .dlalign	00000000 _data_lma
 0000011a g     F .text	00000002 DMA1_Channel2_IRQHandler
-00001c52  w      .debug_info	00000000 .hidden Motor_Driver.c.3b204827
 000000a0 g     F .text	0000007a handle_reset
 0000011a g     F .text	00000002 FLASH_IRQHandler
 0000011a g     F .text	00000002 USART1_IRQHandler
