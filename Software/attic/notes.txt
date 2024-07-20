@@ -1,13 +1,11 @@
 ADC setup
 
-	// Set ACD Clock. Set bits 15:11 to 0 - HBCLK/2 = 24MHz
-	RCC->CFGR0 &= 0xFFFF07FF;
-	
 	// Enable the ADC clock
 	RCC->APB2PCENR |= RCC_APB2Periph_ADC1;
-	
 
-
+	// Set ACD Clock. Set bits 15:11 to 0 - HBCLK/2 = 24MHz
+	RCC->CFGR0 &= 0xFFFF07FF;
+		
 	// Set Pin Mode to Analog Input
 	gpio_set_mode( , INPUT_ALALOG);	
 
