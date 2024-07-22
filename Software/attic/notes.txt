@@ -13,21 +13,15 @@ ADC setup
 	RCC->APB2PRSTR |=  RCC_APB2Periph_ADC1;
 	RCC->APB2PRSTR &= ~RCC_APB2Periph_ADC1;
 	
-
-
-	// Set up single conversion on chl 7
+	// Set rule channel conversion for single conversion on channel 4 (Pin A4)
 	ADC1->RSQR1 = 0;
 	ADC1->RSQR2 = 0;
-	ADC1->RSQR3 = 7;	// 0-9 for 8 ext inputs and two internals
+	ADC1->RSQR3 = 4;
 	
-	// set sampling time for chl 7
-	ADC1->SAMPTR2 &= ~(ADC_SMP0<<(3*7));
-	ADC1->SAMPTR2 |= 7<<(3*7);	// 0:7 => 3/9/15/30/43/57/73/241 cycles
+	// Reset, then set the sample time for channel 4 (Pin A4) to 241 cycles
+	ADC1->SAMPTR2 &= ~(ADC_SMP0 << (3*7));
+	ADC1->SAMPTR2 |= 0x110 << (3*7);
 	
-
-
-
-
 	// Enable the ADC, and set the triggering to external
 	ADC1->CTLR2 |= ADC_ADON | ADC_EXTSEL;
 	
@@ -44,9 +38,6 @@ ADC setup
 
 
 
-/*
- * start conversion, wait and return result
- */
 uint16_t adc_get( void )
 {
 	// start sw conversion (auto clears)

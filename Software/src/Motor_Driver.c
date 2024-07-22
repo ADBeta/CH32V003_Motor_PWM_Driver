@@ -49,7 +49,34 @@ int main()
 /*** Functions ***************************************************************/
 void adc_init(void)
 {
+	// Enable the ADC clock
+	RCC->APB2PCENR |= RCC_APB2Periph_ADC1;
 
+	// Set ACD Clock. Set bits 15:11 to 0 - HBCLK/2 = 24MHz
+	RCC->CFGR0 &= 0xFFFF07FF;
+		
+	// Set Pin Mode to Analog Input
+	gpio_set_mode(GPIO_PD3, INPUT_ANALOG);	
+
+	// Reset the ADC, Inits all registers
+	RCC->APB2PRSTR |=  RCC_APB2Periph_ADC1;
+	RCC->APB2PRSTR &= ~RCC_APB2Periph_ADC1;
+	
+	// Set rule channel conversion for single conversion on channel 4 (Pin A4)
+	ADC1->RSQR1 = 0;
+	ADC1->RSQR2 = 0;
+	ADC1->RSQR3 = 4;
+	
+	// Reset, then set the sample time for channel 4 (Pin A4) to 241 cycles
+	ADC1->SAMPTR2 &= ~(ADC_SMP0 << (3*4));
+	ADC1->SAMPTR2 |= 0x110 << (3*4);
+	
+	// Enable the ADC, and set the triggering to external
+	ADC1->CTLR2 |= ADC_ADON | ADC_EXTSEL;
+	
+	// Reset calibration, wait for it to finish
+	ADC1->CTLR2 |= ADC_RSTCAL;
+	while(ADC1->CTLR2 & ADC_RSTCAL);
 }
 
 

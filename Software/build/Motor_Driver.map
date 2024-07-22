@@ -32,11 +32,11 @@ SYMBOL TABLE:
 0000011a g     F .text	00000002 SPI1_IRQHandler
 0000011a g     F .text	00000002 AWU_IRQHandler
 0000011a g     F .text	00000002 EXTI7_0_IRQHandler
-00001c21  w      .debug_info	00000000 .hidden Motor_Driver.c.45a2aaaa
 0000011a g     F .text	00000002 DMA1_Channel4_IRQHandler
 0000011a g     F .text	00000002 ADC1_IRQHandler
 20000000 g       .bss	00000000 _ebss
 0000011a g     F .text	00000002 DMA1_Channel7_IRQHandler
+00001c21  w      .debug_info	00000000 .hidden Motor_Driver.c.02d9ff72
 0000011a g     F .text	00000002 I2C1_EV_IRQHandler
 0000011a g     F .text	00000002 DMA1_Channel6_IRQHandler
 0000011a g     F .text	00000002 RCC_IRQHandler
@@ -64,6 +64,6 @@ SYMBOL TABLE:
 0000011a g     F .text	00000002 FLASH_IRQHandler
 0000011a g     F .text	00000002 USART1_IRQHandler
 0000011a g     F .text	00000002 I2C1_ER_IRQHandler
-00002127  w      .debug_info	00000000 .hidden lib_GPIOCTRL.c.701a35c1
+0000222f  w      .debug_info	00000000 .hidden lib_GPIOCTRL.c.701a35c1
 
 
