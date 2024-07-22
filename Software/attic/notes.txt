@@ -40,12 +40,10 @@ ADC setup
 
 uint16_t adc_get( void )
 {
-	// start sw conversion (auto clears)
+	// Start a software conversion, wait for it to finish
 	ADC1->CTLR2 |= ADC_SWSTART;
-	
-	// wait for conversion complete
 	while(!(ADC1->STATR & ADC_EOC));
 	
-	// get result
+	// Get the resulting data from the ADC
 	return ADC1->RDATAR;
 }

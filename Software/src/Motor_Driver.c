@@ -41,7 +41,18 @@ int main()
 	pwm_init();
 	pwm_set_duty(128);
 
-	while(1) { }
+	adc_init();
+
+	while(1) {
+		// Start a software conversion, wait for it to finish
+		ADC1->CTLR2 |= ADC_SWSTART;
+		while(!(ADC1->STATR & ADC_EOC));
+	
+		// Get the resulting data from the ADC
+		uint16_t data = ADC1->RDATAR;
+
+		printf("val: %d\n", data);
+	}
 }
 
 
