@@ -2,7 +2,8 @@
 * lib_GPIOCTRL
 * A runtime-capable GPIO Library, with Digital Read/Write and
 * TODO: Analog Read & Analog Write/PWM
-*
+* TODO: ADC Registers
+* TODO: Analog pins
 *
 * See GitHub for details: https://github.com/ADBeta/CH32V003_lib_GPIOCTRL
 *
@@ -54,7 +55,21 @@ typedef enum {
 	GPIO_PD5      = 0x0503,
 	GPIO_PD6      = 0x0603,
 	GPIO_PD7      = 0x0703,
-} gpio_pin_t;
+
+	// Map Analog Pins
+	// If the CPU Is a CH32V003
+	#ifdef CH32V003
+	GPIO_A0       = 0x0200,     // PA2
+	GPIO_A1       = 0x0100,     // PA1
+	GPIO_A2       = 0x0402,     // PC4
+	GPIO_A3       = 0x0203,     // PD2
+	GPIO_A4       = 0x0303,     // PD3
+	GPIO_A5       = 0x0503,     // PD5
+	GPIO_A6       = 0x0603,     // PD6
+	GPIO_A7       = 0x0403,     // PD4
+	#endif
+
+} GPIO_PIN;
 
 
 /*** GPIO Pin Mode Enumeration ***********************************************/
@@ -75,7 +90,7 @@ typedef enum {
 	//
 	OUTPUT_PP_AF       = 0x08,
 	OUTPUT_OD_AF       = 0x0C,
-} gpio_mode_t;
+} GPIO_MODE;
 
 
 /*** GPIO Output State Enumerations ******************************************/
@@ -83,7 +98,7 @@ typedef enum {
 typedef enum {
 	GPIO_LOW     = 0x00,
 	GPIO_HIGH    = 0x01,
-} gpio_state_t;
+} GPIO_STATE;
 
 
 /*** Registers for GPIO Port *************************************************/
@@ -97,50 +112,69 @@ typedef struct {
 	volatile uint32_t BSHR;   // Set/Reset Register
 	volatile uint32_t BCR;    // Port Reset Register
 	volatile uint32_t LCKR;   // Lock Register
-} gpio_port_reg_t;
+} GPIO_PORT_REG_TypeDef;
 
+/// @breif RCC Port Register. Directly Maps to Memory starting at R32_RCC_CTLR
+typedef struct {
+	volatile uint32_t CTLR;       // Clock control register
+	volatile uint32_t CFGR0;      // Clock configuration register 0
+	volatile uint32_t INTR;       // Clock interrupt register
+	volatile uint32_t APB2PRSTR;  // PB2 peripheral reset register
+	volatile uint32_t APB1PRSTR;  // PB1 peripheral reset register
+	volatile uint32_t AHBPCENR;   // HB peripheral clock enable register
+	volatile uint32_t APB2PCENR;  // PB2 peripheral clock enable register
+	volatile uint32_t APB1PCENR;  // PB1 peripheral clock enable register
+	volatile uint32_t BDCTLR;     // RESERVED on CH32V003 
+	volatile uint32_t RSTSCKR;    // Control/status register
+} RCC_PORT_TypeDef;
 
 /*** Register Address Definitions ********************************************/
-#define RCC_APB2PCENR ((volatile uint32_t *)0x40021018)
-#define APB2PCENR_AFIO   0x01
-#define APB2PCENR_IOPxEN 0x04
-
+// Base Registers
+#define RCC_REGISTER_BASE 0x40021000
 #define PORTA_GPIO_REGISTER_BASE 0x40010800
 // NOTE: PORTB is not available for the CH32V003.
 #define PORTB_GPIO_REGISTER_BASE 0x40010C00
 #define PORTC_GPIO_REGISTER_BASE 0x40011000
 #define PORTD_GPIO_REGISTER_BASE 0x40011400
 
-#define GPIO_PORTA ((gpio_port_reg_t *)PORTA_GPIO_REGISTER_BASE)
+// Register typedef Declarations
+#define GPIO_RCC ((RCC_PORT_TypeDef *)RCC_REGISTER_BASE)
+
+#define GPIO_PORTA ((GPIO_PORT_REG_TypeDef *)PORTA_GPIO_REGISTER_BASE)
 // NOTE: PORTB is not available for the CH32V003.
-#define GPIO_PORTB ((gpio_port_reg_t *)PORTB_GPIO_REGISTER_BASE)
-#define GPIO_PORTC ((gpio_port_reg_t *)PORTC_GPIO_REGISTER_BASE)
-#define GPIO_PORTD ((gpio_port_reg_t *)PORTD_GPIO_REGISTER_BASE)
+#define GPIO_PORTB ((GPIO_PORT_REG_TypeDef *)PORTB_GPIO_REGISTER_BASE)
+#define GPIO_PORTC ((GPIO_PORT_REG_TypeDef *)PORTC_GPIO_REGISTER_BASE)
+#define GPIO_PORTD ((GPIO_PORT_REG_TypeDef *)PORTD_GPIO_REGISTER_BASE)
 
 /// @breif The GPIO Ports are places into an array for easy indexing in the
 /// GPIO Functions
 /// NOTE: Only 3 PORTs are usable in the CH32V003, 4 for other MCUs
-extern gpio_port_reg_t *gpio_port_reg[4]; 
+extern GPIO_PORT_REG_TypeDef *GPIO_PORT_MAP[4]; 
+
+/*** Register Known Values ***************************************************/
+// RCC
+#define RCC_APB2PCENR_AFIO   0x01
+#define RCC_APB2PCENR_IOPxEN 0x04
 
 
 /*** GPIO Mode Setting *******************************************************/
 /// @breif Sets the Config and other needed Registers for a passed pin and mode
-/// @param gpio_pin_t pin, the GPIO Pin & Port Variable (e.g GPIO_PD6)
-/// @param gpio_mode_t mode, the GPIO Mode Variable (e.g OUTPUT_10MHZ_PP)
+/// @param GPIO_PIN pin, the GPIO Pin & Port Variable (e.g GPIO_PD6)
+/// @param GPIO_MODE mode, the GPIO Mode Variable (e.g OUTPUT_10MHZ_PP)
 /// @return None
-void gpio_set_mode(const gpio_pin_t pin, const gpio_mode_t mode);
+void gpio_set_mode(const GPIO_PIN pin, const GPIO_MODE mode);
 
 /*** Digital Write/Read ******************************************************/
 /// @breif Sets the OUTDR Register for the passed Pin
-/// @param gpio_pin_t pin, the GPIO Pin & Port Variable (e.g GPIO_PD6)
-/// @param gpio_state_t state, GPIO State to be set (e.g GPIO_HIGH)
+/// @param GPIO_PIN pin, the GPIO Pin & Port Variable (e.g GPIO_PD6)
+/// @param GPIO_STATE state, GPIO State to be set (e.g GPIO_HIGH)
 /// @return None
-void gpio_digital_write(const gpio_pin_t pin, const gpio_state_t state);
+void gpio_digital_write(const GPIO_PIN pin, const GPIO_STATE state);
 
 /// @breif Reads the INDR Register of the specified pin and returns state
-/// @param gpio_pin_t pin, the GPIO Pin & Port Variable (e.g GPIO_PD6)
-/// @return gpio_state_t, the current state of the pin, (e.g GPIO_HIGH)
-gpio_state_t gpio_digital_read(const gpio_pin_t pin);
+/// @param GPIO_PIN pin, the GPIO Pin & Port Variable (e.g GPIO_PD6)
+/// @return GPIO_STATE, the current state of the pin, (e.g GPIO_HIGH)
+GPIO_STATE gpio_digital_read(const GPIO_PIN pin);
 
 
 #endif

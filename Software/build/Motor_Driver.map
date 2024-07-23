@@ -4,9 +4,9 @@ build/Motor_Driver.elf:     file format elf32-littleriscv
 SYMBOL TABLE:
 00000000 l    d  .init	00000000 .init
 000000a0 l    d  .text	00000000 .text
-000007d0 l    d  .fini	00000000 .fini
+000007cc l    d  .fini	00000000 .fini
 20000000 l    d  .dalign	00000000 .dalign
-000007d0 l    d  .dlalign	00000000 .dlalign
+000007cc l    d  .dlalign	00000000 .dlalign
 20000000 l    d  .data	00000000 .data
 20000000 l    d  .bss	00000000 .bss
 00000000 l    d  .riscv.attributes	00000000 .riscv.attributes
@@ -26,6 +26,7 @@ SYMBOL TABLE:
 00000366 l     F .text	00000014 __puts_uart
 00000416 l     F .text	000001b4 mini_vpprintf
 00000000 l    df *ABS*	00000000 div.o
+00001c8d  w      .debug_info	00000000 .hidden Motor_Driver.c.5da7e5fd
 000005ca g     F .text	00000026 printf
 20000800 g       .data	00000000 __global_pointer$
 000003f4 g     F .text	00000002 TIM1_CC_IRQHandler
@@ -33,6 +34,7 @@ SYMBOL TABLE:
 000003f4 g     F .text	00000002 SysTick_Handler
 000003f4 g     F .text	00000002 PVD_IRQHandler
 000003f6 g     F .text	0000000e NMI_Handler
+00002304  w      .debug_info	00000000 .hidden lib_GPIOCTRL.c.3772fcc6
 00000000 g     F .init	0000009c InterruptVectorDefault
 20000000 g       .bss	00000000 _sbss
 00000602 g     F .text	0000001c memcpy
@@ -43,7 +45,6 @@ SYMBOL TABLE:
 000003f4 g     F .text	00000002 SPI1_IRQHandler
 000003f4 g     F .text	00000002 AWU_IRQHandler
 000003f4 g     F .text	00000002 EXTI7_0_IRQHandler
-00001c8d  w      .debug_info	00000000 .hidden Motor_Driver.c.fae40fc5
 000003f4 g     F .text	00000002 DMA1_Channel4_IRQHandler
 000003f4 g     F .text	00000002 ADC1_IRQHandler
 20000000 g       .bss	00000000 _ebss
@@ -59,7 +60,7 @@ SYMBOL TABLE:
 20000000 g       .dalign	00000000 _data_vma
 000003f6 g     F .text	0000000e NMI_RCC_CSS_IRQHandler
 000005f0 g     F .text	00000012 memset
-00000680 g     F .text	00000142 main
+00000680 g     F .text	0000013e main
 000003f4 g     F .text	00000002 DMA1_Channel5_IRQHandler
 000000a0 g     F .text	00000058 .hidden __divsi3
 0000061e g     F .text	00000062 SystemInit
@@ -72,7 +73,7 @@ SYMBOL TABLE:
 000003f4 g     F .text	00000002 SW_Handler
 000003f4 g     F .text	00000002 TIM1_BRK_IRQHandler
 20000000 g       .data	00000000 _edata
-000007d0 g       .dlalign	00000000 _data_lma
+000007cc g       .dlalign	00000000 _data_lma
 000000f8 g     F .text	00000024 .hidden __modsi3
 000003f4 g     F .text	00000002 DMA1_Channel2_IRQHandler
 0000037a g     F .text	0000007a handle_reset
@@ -80,6 +81,5 @@ SYMBOL TABLE:
 000003f4 g     F .text	00000002 USART1_IRQHandler
 00000404 g     F .text	00000012 strlen
 000003f4 g     F .text	00000002 I2C1_ER_IRQHandler
-000022cc  w      .debug_info	00000000 .hidden lib_GPIOCTRL.c.701a35c1
 
 

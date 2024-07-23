@@ -262,7 +262,7 @@ Disassembly of section .text:
  2be:	00d65363          	bge	a2,a3,2c4 <_write.constprop.0+0x3e>
  2c2:	471d                	li	a4,7
  2c4:	00027637          	lui	a2,0x27
- 2c8:	10160613          	addi	a2,a2,257 # 27101 <lib_GPIOCTRL.c.701a35c1+0x24e35>
+ 2c8:	10160613          	addi	a2,a2,257 # 27101 <lib_GPIOCTRL.c.3772fcc6+0x24dfd>
  2cc:	00032583          	lw	a1,0(t1)
  2d0:	0805f513          	andi	a0,a1,128
  2d4:	ed3d                	bnez	a0,352 <_write.constprop.0+0xcc>
@@ -352,7 +352,7 @@ Disassembly of section .text:
  3b4:	c110                	sw	a2,0(a0)
  3b6:	0511                	addi	a0,a0,4
  3b8:	feb54ee3          	blt	a0,a1,3b4 <handle_reset+0x3a>
- 3bc:	7d000513          	li	a0,2000
+ 3bc:	7cc00513          	li	a0,1996
  3c0:	20000597          	auipc	a1,0x20000
  3c4:	c4058593          	addi	a1,a1,-960 # 20000000 <_data_vma>
  3c8:	20000617          	auipc	a2,0x20000
@@ -600,7 +600,7 @@ Disassembly of section .text:
  626:	400217b7          	lui	a5,0x40021
  62a:	01080737          	lui	a4,0x1080
  62e:	0007a223          	sw	zero,4(a5) # 40021004 <_eusrstack+0x20020804>
- 632:	08170713          	addi	a4,a4,129 # 1080081 <lib_GPIOCTRL.c.701a35c1+0x107ddb5>
+ 632:	08170713          	addi	a4,a4,129 # 1080081 <lib_GPIOCTRL.c.3772fcc6+0x107dd7d>
  636:	c398                	sw	a4,0(a5)
  638:	009f0737          	lui	a4,0x9f0
  63c:	c798                	sw	a4,8(a5)
@@ -647,195 +647,193 @@ void pwm_init(void)
  688:	400217b7          	lui	a5,0x40021
  68c:	4fd8                	lw	a4,28(a5)
 	
-	// Make array of uint8_t from [pin] enum. See definition for details
-	uint8_t *byte = (uint8_t *)&pin;
-	
 	// Set the RCC Register to enable clock on the specified port
-	*RCC_APB2PCENR |= (APB2PCENR_AFIO | (APB2PCENR_IOPxEN << byte[0]));
- 68e:	40021637          	lui	a2,0x40021
+	GPIO_RCC->APB2PCENR |= (RCC_APB2PCENR_AFIO | (RCC_APB2PCENR_IOPxEN << byte[0]));
 
 	// Clear then set the GPIO Config Register
-	gpio_port_reg[ byte[0] ]->CFGLR &=        ~(0x0F  << (4 * byte[1]));
- 692:	400116b7          	lui	a3,0x40011
+	GPIO_PORT_MAP[ byte[0] ]->CFGLR &=        ~(0x0F  << (4 * byte[1]));
+ 68e:	400116b7          	lui	a3,0x40011
+ 692:	40068693          	addi	a3,a3,1024 # 40011400 <_eusrstack+0x20010c00>
  696:	00176713          	ori	a4,a4,1
  69a:	cfd8                	sw	a4,28(a5)
-	*RCC_APB2PCENR |= (APB2PCENR_AFIO | (APB2PCENR_IOPxEN << byte[0]));
- 69c:	4e18                	lw	a4,24(a2)
-	gpio_port_reg[ byte[0] ]->CFGLR &=        ~(0x0F  << (4 * byte[1]));
- 69e:	40068693          	addi	a3,a3,1024 # 40011400 <_eusrstack+0x20010c00>
- 6a2:	fff105b7          	lui	a1,0xfff10
-	*RCC_APB2PCENR |= (APB2PCENR_AFIO | (APB2PCENR_IOPxEN << byte[0]));
- 6a6:	02176713          	ori	a4,a4,33
- 6aa:	ce18                	sw	a4,24(a2)
-	gpio_port_reg[ byte[0] ]->CFGLR &=        ~(0x0F  << (4 * byte[1]));
- 6ac:	4298                	lw	a4,0(a3)
- 6ae:	15fd                	addi	a1,a1,-1 # fff0ffff <_eusrstack+0xdff0f7ff>
- 6b0:	8f6d                	and	a4,a4,a1
- 6b2:	c298                	sw	a4,0(a3)
-	gpio_port_reg[ byte[0] ]->CFGLR |=  (mode & 0x0F) << (4 * byte[1]);
- 6b4:	4298                	lw	a4,0(a3)
- 6b6:	000905b7          	lui	a1,0x90
- 6ba:	8f4d                	or	a4,a4,a1
- 6bc:	c298                	sw	a4,0(a3)
+	GPIO_RCC->APB2PCENR |= (RCC_APB2PCENR_AFIO | (RCC_APB2PCENR_IOPxEN << byte[0]));
+ 69c:	4f98                	lw	a4,24(a5)
+	GPIO_PORT_MAP[ byte[0] ]->CFGLR &=        ~(0x0F  << (4 * byte[1]));
+ 69e:	fff10637          	lui	a2,0xfff10
+ 6a2:	167d                	addi	a2,a2,-1 # fff0ffff <_eusrstack+0xdff0f7ff>
+	GPIO_RCC->APB2PCENR |= (RCC_APB2PCENR_AFIO | (RCC_APB2PCENR_IOPxEN << byte[0]));
+ 6a4:	02176713          	ori	a4,a4,33
+ 6a8:	cf98                	sw	a4,24(a5)
+	GPIO_PORT_MAP[ byte[0] ]->CFGLR &=        ~(0x0F  << (4 * byte[1]));
+ 6aa:	4298                	lw	a4,0(a3)
+ 6ac:	8f71                	and	a4,a4,a2
+ 6ae:	c298                	sw	a4,0(a3)
+	GPIO_PORT_MAP[ byte[0] ]->CFGLR |=  (mode & 0x0F) << (4 * byte[1]);
+ 6b0:	4298                	lw	a4,0(a3)
+ 6b2:	00090637          	lui	a2,0x90
+ 6b6:	8f51                	or	a4,a4,a2
+ 6b8:	c298                	sw	a4,0(a3)
 
 	// Set GPIO-D4 OUTPUT 10MHz, Aleternate Function (Multiplex)
 	gpio_set_mode(GPIO_PD4, OUTPUT_10MHZ_PP | OUTPUT_PP_AF);
 
 	// Reset TIM2, Inits all registers
 	RCC->APB1PRSTR |= RCC_APB1Periph_TIM2;
- 6be:	4b98                	lw	a4,16(a5)
+ 6ba:	4b98                	lw	a4,16(a5)
 	RCC->APB1PRSTR &= ~RCC_APB1Periph_TIM2;
 
 	// Set Prescaler
 	TIM2->PSC = 0x0000;
 	// Set PWM Max Value (Autoreload Value)
 	TIM2->ATRLR = 254;
- 6c0:	0fe00593          	li	a1,254
+ 6bc:	0fe00613          	li	a2,254
 	RCC->APB1PRSTR |= RCC_APB1Periph_TIM2;
- 6c4:	00176713          	ori	a4,a4,1
- 6c8:	cb98                	sw	a4,16(a5)
+ 6c0:	00176713          	ori	a4,a4,1
+ 6c4:	cb98                	sw	a4,16(a5)
 	RCC->APB1PRSTR &= ~RCC_APB1Periph_TIM2;
- 6ca:	4b98                	lw	a4,16(a5)
- 6cc:	9b79                	andi	a4,a4,-2
- 6ce:	cb98                	sw	a4,16(a5)
+ 6c6:	4b98                	lw	a4,16(a5)
+ 6c8:	9b79                	andi	a4,a4,-2
+ 6ca:	cb98                	sw	a4,16(a5)
 	TIM2->PSC = 0x0000;
- 6d0:	40000737          	lui	a4,0x40000
- 6d4:	02071423          	sh	zero,40(a4) # 40000028 <_eusrstack+0x1ffff828>
+ 6cc:	40000737          	lui	a4,0x40000
+ 6d0:	02071423          	sh	zero,40(a4) # 40000028 <_eusrstack+0x1ffff828>
 	TIM2->ATRLR = 254;
- 6d8:	02b71623          	sh	a1,44(a4)
+ 6d4:	02c71623          	sh	a2,44(a4)
 
 	// Set the Compare Capture Register
 	// TIM2_OC1M = 0b111 - PWM Mode 2 - Enable Preload
 	TIM2->CHCTLR1 |= TIM_OC1M_2 | TIM_OC1M_1 | TIM_OC1M_0 | TIM_OC1PE;
- 6dc:	01875583          	lhu	a1,24(a4)
- 6e0:	0785e593          	ori	a1,a1,120
- 6e4:	00b71c23          	sh	a1,24(a4)
+ 6d8:	01875603          	lhu	a2,24(a4)
+ 6dc:	07866613          	ori	a2,a2,120
+ 6e0:	00c71c23          	sh	a2,24(a4)
 
 	// Enable auto-reload
 	TIM2->CTLR1 |= TIM_ARPE;
- 6e8:	00075583          	lhu	a1,0(a4)
- 6ec:	0805e593          	ori	a1,a1,128
- 6f0:	00b71023          	sh	a1,0(a4)
+ 6e4:	00075603          	lhu	a2,0(a4)
+ 6e8:	08066613          	ori	a2,a2,128
+ 6ec:	00c71023          	sh	a2,0(a4)
 
 	// Enable channel output, set polarity ACTIVE_LOW
 	TIM2->CCER |= TIM_CC1E | TIM_CC1P;
- 6f4:	02075583          	lhu	a1,32(a4)
- 6f8:	0035e593          	ori	a1,a1,3
- 6fc:	02b71023          	sh	a1,32(a4)
+ 6f0:	02075603          	lhu	a2,32(a4)
+ 6f4:	00366613          	ori	a2,a2,3
+ 6f8:	02c71023          	sh	a2,32(a4)
 
 	// Initialise Counter
 	TIM2->SWEVGR |= TIM_UG;
- 700:	01475583          	lhu	a1,20(a4)
- 704:	0015e593          	ori	a1,a1,1
- 708:	00b71a23          	sh	a1,20(a4)
+ 6fc:	01475603          	lhu	a2,20(a4)
+ 700:	00166613          	ori	a2,a2,1
+ 704:	00c71a23          	sh	a2,20(a4)
 
 	// Enable TIM2
 	TIM2->CTLR1 |= TIM_CEN;
- 70c:	00075583          	lhu	a1,0(a4)
- 710:	0015e593          	ori	a1,a1,1
- 714:	00b71023          	sh	a1,0(a4)
+ 708:	00075603          	lhu	a2,0(a4)
+ 70c:	00166613          	ori	a2,a2,1
+ 710:	00c71023          	sh	a2,0(a4)
 }
 
 
 void pwm_set_duty(uint32_t duty)
 {
 	TIM2->CH1CVR = duty;
- 718:	08000593          	li	a1,128
- 71c:	db4c                	sw	a1,52(a4)
+ 714:	08000613          	li	a2,128
+ 718:	db50                	sw	a2,52(a4)
 	RCC->APB2PCENR |= RCC_APB2Periph_ADC1;
- 71e:	4f98                	lw	a4,24(a5)
+ 71a:	4f98                	lw	a4,24(a5)
 	RCC->CFGR0 &= 0xFFFF07FF;
- 720:	75c1                	lui	a1,0xffff0
- 722:	7ff58593          	addi	a1,a1,2047 # ffff07ff <_eusrstack+0xdffeffff>
+ 71c:	7641                	lui	a2,0xffff0
+ 71e:	7ff60613          	addi	a2,a2,2047 # ffff07ff <_eusrstack+0xdffeffff>
 	RCC->APB2PCENR |= RCC_APB2Periph_ADC1;
- 726:	20076713          	ori	a4,a4,512
- 72a:	cf98                	sw	a4,24(a5)
+ 722:	20076713          	ori	a4,a4,512
+ 726:	cf98                	sw	a4,24(a5)
 	RCC->CFGR0 &= 0xFFFF07FF;
- 72c:	43d8                	lw	a4,4(a5)
- 72e:	8f6d                	and	a4,a4,a1
- 730:	c3d8                	sw	a4,4(a5)
-	*RCC_APB2PCENR |= (APB2PCENR_AFIO | (APB2PCENR_IOPxEN << byte[0]));
- 732:	4e18                	lw	a4,24(a2)
+ 728:	43d8                	lw	a4,4(a5)
+ 72a:	8f71                	and	a4,a4,a2
+ 72c:	c3d8                	sw	a4,4(a5)
+	GPIO_RCC->APB2PCENR |= (RCC_APB2PCENR_AFIO | (RCC_APB2PCENR_IOPxEN << byte[0]));
+ 72e:	4f98                	lw	a4,24(a5)
+	GPIO_PORT_MAP[ byte[0] ]->CFGLR &=        ~(0x0F  << (4 * byte[1]));
+ 730:	7645                	lui	a2,0xffff1
+ 732:	167d                	addi	a2,a2,-1 # ffff0fff <_eusrstack+0xdfff07ff>
+	GPIO_RCC->APB2PCENR |= (RCC_APB2PCENR_AFIO | (RCC_APB2PCENR_IOPxEN << byte[0]));
  734:	02176713          	ori	a4,a4,33
- 738:	ce18                	sw	a4,24(a2)
-	gpio_port_reg[ byte[0] ]->CFGLR &=        ~(0x0F  << (4 * byte[1]));
+ 738:	cf98                	sw	a4,24(a5)
+	GPIO_PORT_MAP[ byte[0] ]->CFGLR &=        ~(0x0F  << (4 * byte[1]));
  73a:	4298                	lw	a4,0(a3)
- 73c:	7645                	lui	a2,0xffff1
- 73e:	167d                	addi	a2,a2,-1 # ffff0fff <_eusrstack+0xdfff07ff>
- 740:	8f71                	and	a4,a4,a2
+ 73c:	8f71                	and	a4,a4,a2
+ 73e:	c298                	sw	a4,0(a3)
+	GPIO_PORT_MAP[ byte[0] ]->CFGLR |=  (mode & 0x0F) << (4 * byte[1]);
+ 740:	4298                	lw	a4,0(a3)
  742:	c298                	sw	a4,0(a3)
-	gpio_port_reg[ byte[0] ]->CFGLR |=  (mode & 0x0F) << (4 * byte[1]);
- 744:	4298                	lw	a4,0(a3)
- 746:	c298                	sw	a4,0(a3)
 	RCC->APB2PRSTR |=  RCC_APB2Periph_ADC1;
- 748:	47d8                	lw	a4,12(a5)
+ 744:	47d8                	lw	a4,12(a5)
 	ADC1->SAMPTR2 &= ~(ADC_SMP0 << (3*4));
- 74a:	76e5                	lui	a3,0xffff9
- 74c:	16fd                	addi	a3,a3,-1 # ffff8fff <_eusrstack+0xdfff87ff>
+ 746:	76e5                	lui	a3,0xffff9
+ 748:	16fd                	addi	a3,a3,-1 # ffff8fff <_eusrstack+0xdfff87ff>
 	RCC->APB2PRSTR |=  RCC_APB2Periph_ADC1;
- 74e:	20076713          	ori	a4,a4,512
- 752:	c7d8                	sw	a4,12(a5)
+ 74a:	20076713          	ori	a4,a4,512
+ 74e:	c7d8                	sw	a4,12(a5)
 	RCC->APB2PRSTR &= ~RCC_APB2Periph_ADC1;
- 754:	47d8                	lw	a4,12(a5)
- 756:	dff77713          	andi	a4,a4,-513
- 75a:	c7d8                	sw	a4,12(a5)
+ 750:	47d8                	lw	a4,12(a5)
+ 752:	dff77713          	andi	a4,a4,-513
+ 756:	c7d8                	sw	a4,12(a5)
 	ADC1->RSQR1 = 0;
- 75c:	400127b7          	lui	a5,0x40012
- 760:	40078793          	addi	a5,a5,1024 # 40012400 <_eusrstack+0x20011c00>
- 764:	0207a623          	sw	zero,44(a5)
+ 758:	400127b7          	lui	a5,0x40012
+ 75c:	40078793          	addi	a5,a5,1024 # 40012400 <_eusrstack+0x20011c00>
+ 760:	0207a623          	sw	zero,44(a5)
 	ADC1->RSQR2 = 0;
- 768:	0207a823          	sw	zero,48(a5)
+ 764:	0207a823          	sw	zero,48(a5)
 	ADC1->RSQR3 = 4;
- 76c:	4711                	li	a4,4
- 76e:	dbd8                	sw	a4,52(a5)
+ 768:	4711                	li	a4,4
+ 76a:	dbd8                	sw	a4,52(a5)
 	ADC1->SAMPTR2 &= ~(ADC_SMP0 << (3*4));
- 770:	4b98                	lw	a4,16(a5)
- 772:	8f75                	and	a4,a4,a3
- 774:	cb98                	sw	a4,16(a5)
+ 76c:	4b98                	lw	a4,16(a5)
+ 76e:	8f75                	and	a4,a4,a3
+ 770:	cb98                	sw	a4,16(a5)
 	ADC1->SAMPTR2 |= 0x110 << (3*4);
- 776:	4b98                	lw	a4,16(a5)
- 778:	001106b7          	lui	a3,0x110
- 77c:	8f55                	or	a4,a4,a3
- 77e:	cb98                	sw	a4,16(a5)
+ 772:	4b98                	lw	a4,16(a5)
+ 774:	001106b7          	lui	a3,0x110
+ 778:	8f55                	or	a4,a4,a3
+ 77a:	cb98                	sw	a4,16(a5)
 	ADC1->CTLR2 |= ADC_ADON | ADC_EXTSEL;
- 780:	4798                	lw	a4,8(a5)
- 782:	000e06b7          	lui	a3,0xe0
- 786:	0685                	addi	a3,a3,1 # e0001 <lib_GPIOCTRL.c.701a35c1+0xddd35>
- 788:	8f55                	or	a4,a4,a3
- 78a:	c798                	sw	a4,8(a5)
+ 77c:	4798                	lw	a4,8(a5)
+ 77e:	000e06b7          	lui	a3,0xe0
+ 782:	0685                	addi	a3,a3,1 # e0001 <lib_GPIOCTRL.c.3772fcc6+0xddcfd>
+ 784:	8f55                	or	a4,a4,a3
+ 786:	c798                	sw	a4,8(a5)
 	ADC1->CTLR2 |= ADC_RSTCAL;
- 78c:	4798                	lw	a4,8(a5)
- 78e:	00876713          	ori	a4,a4,8
- 792:	c798                	sw	a4,8(a5)
+ 788:	4798                	lw	a4,8(a5)
+ 78a:	00876713          	ori	a4,a4,8
+ 78e:	c798                	sw	a4,8(a5)
 	while(ADC1->CTLR2 & ADC_RSTCAL);
- 794:	4798                	lw	a4,8(a5)
- 796:	8b21                	andi	a4,a4,8
- 798:	ff75                	bnez	a4,794 <main+0x114>
+ 790:	4798                	lw	a4,8(a5)
+ 792:	8b21                	andi	a4,a4,8
+ 794:	ff75                	bnez	a4,790 <main+0x110>
 		ADC1->CTLR2 |= ADC_SWSTART;
- 79a:	40012437          	lui	s0,0x40012
- 79e:	40040413          	addi	s0,s0,1024 # 40012400 <_eusrstack+0x20011c00>
- 7a2:	441c                	lw	a5,8(s0)
- 7a4:	00400737          	lui	a4,0x400
- 7a8:	8fd9                	or	a5,a5,a4
- 7aa:	c41c                	sw	a5,8(s0)
+ 796:	40012437          	lui	s0,0x40012
+ 79a:	40040413          	addi	s0,s0,1024 # 40012400 <_eusrstack+0x20011c00>
+ 79e:	441c                	lw	a5,8(s0)
+ 7a0:	00400737          	lui	a4,0x400
+ 7a4:	8fd9                	or	a5,a5,a4
+ 7a6:	c41c                	sw	a5,8(s0)
 		while(!(ADC1->STATR & ADC_EOC));
- 7ac:	401c                	lw	a5,0(s0)
- 7ae:	8b89                	andi	a5,a5,2
- 7b0:	dff5                	beqz	a5,7ac <main+0x12c>
+ 7a8:	401c                	lw	a5,0(s0)
+ 7aa:	8b89                	andi	a5,a5,2
+ 7ac:	dff5                	beqz	a5,7a8 <main+0x128>
 		uint16_t data = ADC1->RDATAR;
- 7b2:	446c                	lw	a1,76(s0)
+ 7ae:	446c                	lw	a1,76(s0)
 		printf("val: %d\n", data);
- 7b4:	4501                	li	a0,0
- 7b6:	7c400513          	li	a0,1988
- 7ba:	05c2                	slli	a1,a1,0x10
- 7bc:	81c1                	srli	a1,a1,0x10
- 7be:	3531                	jal	5ca <printf>
+ 7b0:	4501                	li	a0,0
+ 7b2:	7c000513          	li	a0,1984
+ 7b6:	05c2                	slli	a1,a1,0x10
+ 7b8:	81c1                	srli	a1,a1,0x10
+ 7ba:	3d01                	jal	5ca <printf>
 	while(1) {
- 7c0:	b7cd                	j	7a2 <main+0x122>
- 7c2:	0000                	unimp
- 7c4:	6176                	.insn	2, 0x6176
- 7c6:	3a6c                	.insn	2, 0x3a6c
- 7c8:	2520                	.insn	2, 0x2520
- 7ca:	0a64                	addi	s1,sp,284
- 7cc:	0000                	unimp
+ 7bc:	b7cd                	j	79e <main+0x11e>
+ 7be:	0000                	unimp
+ 7c0:	6176                	.insn	2, 0x6176
+ 7c2:	3a6c                	.insn	2, 0x3a6c
+ 7c4:	2520                	.insn	2, 0x2520
+ 7c6:	0a64                	addi	s1,sp,284
+ 7c8:	0000                	unimp
 	...

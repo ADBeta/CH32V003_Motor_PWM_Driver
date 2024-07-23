@@ -67,7 +67,7 @@ void adc_init(void)
 	RCC->CFGR0 &= 0xFFFF07FF;
 		
 	// Set Pin Mode to Analog Input
-	gpio_set_mode(GPIO_PD3, INPUT_ANALOG);	
+	gpio_set_mode(GPIO_A4, INPUT_ANALOG);	
 
 	// Reset the ADC, Inits all registers
 	RCC->APB2PRSTR |=  RCC_APB2Periph_ADC1;
