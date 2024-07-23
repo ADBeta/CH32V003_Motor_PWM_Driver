@@ -70,3 +70,47 @@ inline GPIO_STATE gpio_digital_read(const GPIO_PIN pin)
 }
 
 
+__attribute__((always_inline))
+inline void gpio_init_adc(void)
+{
+	// Enable the ADC clock
+	GPIO_RCC->APB2PCENR |= RCC_APB2Periph_ADC1;
+
+	// Set ACD Clock. Set bits 15:11 to 0 - HBCLK/2 = 24MHz
+	GPIO_RCC->CFGR0 &= 0xFFFF07FF;
+
+	// Reset the ADC, Inits all registers
+	GPIO_RCC->APB2PRSTR |=  RCC_APB2Periph_ADC1;
+	GPIO_RCC->APB2PRSTR &= ~RCC_APB2Periph_ADC1;
+	
+	// Set rule channel conversion to all 0, ready for read
+	GPIO_ADC1->RSQR1 = 0;
+	GPIO_ADC1->RSQR2 = 0;
+	GPIO_ADC1->RSQR3 = 0;
+
+	// Enable the ADC, and set the triggering to external
+	GPIO_ADC1->CTLR2 |= ADC_ADON | ADC_EXTSEL;
+	
+	// Reset calibration, wait for it to finish
+	GPIO_ADC1->CTLR2 |= ADC_RSTCAL;
+	while(GPIO_ADC1->CTLR2 & ADC_RSTCAL);
+}
+
+__attribute__((always_inline))
+inline uint16_t gpio_analog_read(const GPIO_ANALOG_CHANNEL chan)
+{
+	// Set rule channel conversion for single conversion on passed channel
+	GPIO_ADC1->RSQR1 = 0;
+	GPIO_ADC1->RSQR2 = 0;
+	GPIO_ADC1->RSQR3 = (uint32_t)chan;
+	
+	// Reset, then set the sample time for the passed channel
+	GPIO_ADC1->SAMPTR2 &= ~(0x111 << (3 * (uint32_t)chan));
+	GPIO_ADC1->SAMPTR2 |=   0x110 << (3 * (uint32_t)chan);
+
+	GPIO_ADC1->CTLR2 |= ADC_SWSTART;
+	while(!(GPIO_ADC1->STATR & ADC_EOC));
+
+	// Get the resulting data from the ADC
+	return GPIO_ADC1->RDATAR;
+}
