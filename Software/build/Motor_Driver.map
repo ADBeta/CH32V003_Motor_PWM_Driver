@@ -4,9 +4,9 @@ build/Motor_Driver.elf:     file format elf32-littleriscv
 SYMBOL TABLE:
 00000000 l    d  .init	00000000 .init
 000000a0 l    d  .text	00000000 .text
-00000854 l    d  .fini	00000000 .fini
+0000083c l    d  .fini	00000000 .fini
 20000000 l    d  .dalign	00000000 .dalign
-00000854 l    d  .dlalign	00000000 .dlalign
+0000083c l    d  .dlalign	00000000 .dlalign
 20000000 l    d  .data	00000000 .data
 20000000 l    d  .bss	00000000 .bss
 00000000 l    d  .riscv.attributes	00000000 .riscv.attributes
@@ -53,14 +53,13 @@ SYMBOL TABLE:
 000003f8 g     F .text	00000002 RCC_IRQHandler
 000003f8 g     F .text	00000002 TIM1_TRG_COM_IRQHandler
 000003f8 g     F .text	00000002 DMA1_Channel1_IRQHandler
-00000f58  w      .debug_info	00000000 .hidden ch32v003fun.c.524d8b55
+00000f8c  w      .debug_info	00000000 .hidden ch32v003fun.c.524d8b55
 000003f8 g     F .text	00000002 DefaultIRQHandler
 20000000 g       .dalign	00000000 _data_vma
 000003fa g     F .text	0000000e NMI_RCC_CSS_IRQHandler
-00001d2e  w      .debug_info	00000000 .hidden Motor_Driver.c.7606c5b2
+00001d62  w      .debug_info	00000000 .hidden Motor_Driver.c.7221478c
 000005f4 g     F .text	00000012 memset
-00000684 g     F .text	000001bc main
-0000232e  w      .debug_info	00000000 .hidden lib_GPIOCTRL.c.67c42228
+00000684 g     F .text	000001a4 main
 000003f8 g     F .text	00000002 DMA1_Channel5_IRQHandler
 000000a0 g     F .text	00000058 .hidden __divsi3
 00000622 g     F .text	00000062 SystemInit
@@ -73,7 +72,7 @@ SYMBOL TABLE:
 000003f8 g     F .text	00000002 SW_Handler
 000003f8 g     F .text	00000002 TIM1_BRK_IRQHandler
 20000000 g       .data	00000000 _edata
-00000854 g       .dlalign	00000000 _data_lma
+0000083c g       .dlalign	00000000 _data_lma
 000000f8 g     F .text	00000024 .hidden __modsi3
 000003f8 g     F .text	00000002 DMA1_Channel2_IRQHandler
 0000037a g     F .text	0000007e handle_reset
@@ -81,5 +80,6 @@ SYMBOL TABLE:
 000003f8 g     F .text	00000002 USART1_IRQHandler
 00000408 g     F .text	00000012 strlen
 000003f8 g     F .text	00000002 I2C1_ER_IRQHandler
+000023f1  w      .debug_info	00000000 .hidden lib_GPIOCTRL.c.3b02ca5a
 
 

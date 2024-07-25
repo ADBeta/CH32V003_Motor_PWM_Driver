@@ -70,14 +70,14 @@ inline GPIO_STATE gpio_digital_read(const GPIO_PIN pin)
 }
 
 
-__attribute__((always_inline))
-inline void gpio_init_adc(void)
+void gpio_init_adc(const ADC_CLOCK_DIV div, const ADC_SAMPLE_CYCLES cycles)
 {
 	// Enable the ADC clock
 	GPIO_RCC->APB2PCENR |= RCC_APB2Periph_ADC1;
 
-	// Set ACD Clock. Set bits 15:11 to 0 - HBCLK/2 = 24MHz
-	GPIO_RCC->CFGR0 &= 0xFFFF07FF;
+	// Set ACD Clock Divider
+	GPIO_RCC->CFGR0 &= ~ADC_CLOCK_DIV_128;
+	GPIO_RCC->CFGR0 |= div;
 
 	// Reset the ADC, Inits all registers
 	GPIO_RCC->APB2PRSTR |=  RCC_APB2Periph_ADC1;
@@ -100,13 +100,14 @@ __attribute__((always_inline))
 inline uint16_t gpio_analog_read(const GPIO_ANALOG_CHANNEL chan)
 {
 	// Set rule channel conversion for single conversion on passed channel
-	GPIO_ADC1->RSQR1 = 0;
-	GPIO_ADC1->RSQR2 = 0;
+	// GPIO_ADC1->RSQR1 = 0;
+	// GPIO_ADC1->RSQR2 = 0;
 	GPIO_ADC1->RSQR3 = (uint32_t)chan;
 	
 	// Reset, then set the sample time for the passed channel
-	GPIO_ADC1->SAMPTR2 &= ~(0x111 << (3 * (uint32_t)chan));
-	GPIO_ADC1->SAMPTR2 |=   0x110 << (3 * (uint32_t)chan);
+	uint32_t shift_mask = 3 * (uint32_t)chan;
+	GPIO_ADC1->SAMPTR2 &= ~(0x07 << shift_mask);
+	GPIO_ADC1->SAMPTR2 |=   0x07 << shift_mask;
 
 	GPIO_ADC1->CTLR2 |= ADC_SWSTART;
 	while(!(GPIO_ADC1->STATR & ADC_EOC));

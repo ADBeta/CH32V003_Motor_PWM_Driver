@@ -105,6 +105,27 @@ typedef enum {
 	OUTPUT_OD_AF	   = 0x0C,
 } GPIO_MODE;
 
+/*** ADC Setting Enumeration *************************************************/
+/// @breif a sample of ADC clock division settings (Bits 15:11 in RCC->CFGR0)
+typedef enum {
+	ADC_CLOCK_DIV_2   = (uint32_t)0x00000000,
+	ADC_CLOCK_DIV_32  = (uint32_t)0x00003800,
+	ADC_CLOCK_DIV_64  = (uint32_t)0x00007800,
+	ADC_CLOCK_DIV_128 = (uint32_t)0x0000F800,
+} ADC_CLOCK_DIV;
+
+
+/// @brief ADC Sample Settings
+typedef enum {
+	ADC_SAMPLE_CYCLES_3    = 0x00,
+	ADC_SAMPLE_CYCLES_9    = 0x01,
+	ADC_SAMPLE_CYCLES_15   = 0x02,
+	ADC_SAMPLE_CYCLES_30   = 0x03,
+	ADC_SAMPLE_CYCLES_43   = 0x04,
+	ADC_SAMPLE_CYCLES_57   = 0x05,
+	ADC_SAMPLE_CYCLES_73   = 0x06,
+	ADC_SAMPLE_CYCLES_241  = 0x07,
+} ADC_SAMPLE_CYCLES;
 
 /*** GPIO Output State Enumerations ******************************************/
 /// @breif GPIO Pin State Enum, simple implimentation of a HIGH/LOW System
@@ -223,10 +244,10 @@ void gpio_digital_write(const GPIO_PIN pin, const GPIO_STATE state);
 GPIO_STATE gpio_digital_read(const GPIO_PIN pin);
 
 /// @breif initialises the ADC registers, sets polling mode, and calibrates
-/// @param none (maybe clk settings???)
+/// @param ADC_CLOCK_DIV, ADC Clock Divisor
+/// @param ADC_SAMPLE_CYCLES, Number of cycles to sample the ADC
 /// @retun none
-/// NOTE: ADC Clock is HBCLK/2 = 24MHz
-void gpio_init_adc(void);
+void gpio_init_adc(const ADC_CLOCK_DIV div, const ADC_SAMPLE_CYCLES cycles);
 
 /// @breif Reads the specified pin, only if it is one of the analog inputs
 /// @param GPIO_ANALOG_CHANNEL chan, the Analog GPIO Channel to read
