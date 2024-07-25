@@ -38,6 +38,7 @@ void pwm_set_duty(uint32_t duty);
 int main()
 {
 	SystemInit();
+
 	gpio_init_adc(ADC_CLOCK_DIV_2, ADC_SAMPLE_CYCLES_73);
 
 	gpio_set_mode(GPIO_A2, INPUT_ANALOG);

@@ -115,16 +115,16 @@ typedef enum {
 } ADC_CLOCK_DIV;
 
 
-/// @brief ADC Sample Settings
+/// @brief ADC Sample Settings. Pre-calculated Sample Bits for all channels
 typedef enum {
-	ADC_SAMPLE_CYCLES_3    = 0x00,
-	ADC_SAMPLE_CYCLES_9    = 0x01,
-	ADC_SAMPLE_CYCLES_15   = 0x02,
-	ADC_SAMPLE_CYCLES_30   = 0x03,
-	ADC_SAMPLE_CYCLES_43   = 0x04,
-	ADC_SAMPLE_CYCLES_57   = 0x05,
-	ADC_SAMPLE_CYCLES_73   = 0x06,
-	ADC_SAMPLE_CYCLES_241  = 0x07,
+	ADC_SAMPLE_CYCLES_3    = (uint32_t)0x00000000,
+	ADC_SAMPLE_CYCLES_9    = (uint32_t)0x09249249,
+	ADC_SAMPLE_CYCLES_15   = (uint32_t)0x12492492,
+	ADC_SAMPLE_CYCLES_30   = (uint32_t)0x1B6DB6DB,
+	ADC_SAMPLE_CYCLES_43   = (uint32_t)0x24924924,
+	ADC_SAMPLE_CYCLES_57   = (uint32_t)0x2DB6DB6D,
+	ADC_SAMPLE_CYCLES_73   = (uint32_t)0x36DB6DB6,
+	ADC_SAMPLE_CYCLES_241  = (uint32_t)0x3FFFFFFF,
 } ADC_SAMPLE_CYCLES;
 
 /*** GPIO Output State Enumerations ******************************************/

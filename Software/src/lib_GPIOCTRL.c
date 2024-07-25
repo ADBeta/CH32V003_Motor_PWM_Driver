@@ -88,6 +88,10 @@ void gpio_init_adc(const ADC_CLOCK_DIV div, const ADC_SAMPLE_CYCLES cycles)
 	GPIO_ADC1->RSQR2 = 0;
 	GPIO_ADC1->RSQR3 = 0;
 
+	// Set the Sample Register(s) for all channels at once
+	GPIO_ADC1->SAMPTR1 = cycles;
+	GPIO_ADC1->SAMPTR2 = cycles;
+
 	// Enable the ADC, and set the triggering to external
 	GPIO_ADC1->CTLR2 |= ADC_ADON | ADC_EXTSEL;
 	
@@ -103,11 +107,6 @@ inline uint16_t gpio_analog_read(const GPIO_ANALOG_CHANNEL chan)
 	// GPIO_ADC1->RSQR1 = 0;
 	// GPIO_ADC1->RSQR2 = 0;
 	GPIO_ADC1->RSQR3 = (uint32_t)chan;
-	
-	// Reset, then set the sample time for the passed channel
-	uint32_t shift_mask = 3 * (uint32_t)chan;
-	GPIO_ADC1->SAMPTR2 &= ~(0x07 << shift_mask);
-	GPIO_ADC1->SAMPTR2 |=   0x07 << shift_mask;
 
 	GPIO_ADC1->CTLR2 |= ADC_SWSTART;
 	while(!(GPIO_ADC1->STATR & ADC_EOC));
