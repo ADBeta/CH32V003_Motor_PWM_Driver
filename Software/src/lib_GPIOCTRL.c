@@ -1,8 +1,6 @@
 /******************************************************************************
 * lib_GPIOCTRL
-* A runtime-capable GPIO Library, with Digital Read/Write and
-* TODO: Analog Read & Analog Write/PWM
-*
+* A runtime-capable GPIO Library, with Digital Read/Write and Analog Read
 *
 * See GitHub for details: https://github.com/ADBeta/CH32V003_lib_GPIOCTRL
 *
@@ -12,8 +10,6 @@
 
 #include <stdint.h>
 
-
-// TODO:
 GPIO_PORT_REG_TypeDef *GPIO_PORT_MAP[4] = {
 	GPIO_PORTA,
 	NULL,

@@ -865,6 +865,565 @@
 				)
 			)
 		)
+		(symbol "Interface_Optical:QSE159"
+			(pin_names
+				(offset 0.254)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" "U"
+				(at -5.08 6.35 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left)
+				)
+			)
+			(property "Value" "QSE159"
+				(at -7.62 -6.35 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left)
+				)
+			)
+			(property "Footprint" "OptoDevice:ONSemi_QSE15x"
+				(at 0 -10.16 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" "http://www.onsemi.com/pub/Collateral/QSE159-D.pdf"
+				(at 16.51 7.62 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Description" "Plastic Silicon Photosensor"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_keywords" "opto IR"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_fp_filters" "*QSE15*"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(symbol "QSE159_0_0"
+				(arc
+					(start -5.08 1.651)
+					(mid -5.8829 0.0688)
+					(end -5.08 -1.524)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type background)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0.889 3.302) (xy 1.651 3.302)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0.381 -1.778) (xy 1.016 -2.413) (xy 1.016 -2.921)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0.381 -1.524) (xy -0.508 -1.524) (xy -0.508 1.651)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 1.651 -2.921) (xy -2.794 -2.921) (xy -2.794 1.651)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0.381 -1.143) (xy 1.016 -0.508) (xy 1.016 0) (xy 1.27 0)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(rectangle
+					(start 0.889 4.572)
+					(end -4.191 1.651)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(rectangle
+					(start 5.08 5.08)
+					(end -5.08 -5.08)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type background)
+					)
+				)
+				(text "TRIG"
+					(at -1.651 3.048 0)
+					(effects
+						(font
+							(size 1.524 1.524)
+						)
+					)
+				)
+			)
+			(symbol "QSE159_0_1"
+				(polyline
+					(pts
+						(xy -3.937 0.508) (xy -4.826 1.397)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -3.937 0.508) (xy -4.445 0.508)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -3.937 0.508) (xy -3.937 1.016)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -3.81 -0.508) (xy -4.699 0.381)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -3.81 -0.508) (xy -4.318 -0.508)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -3.81 -0.508) (xy -3.81 0)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -3.556 -0.889) (xy -1.905 -0.889)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0.381 -0.508) (xy 0.381 -2.413)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0.508 -2.159) (xy 0.635 -2.159)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0.762 -2.159) (xy 0.635 -2.159)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0.762 -2.159) (xy 0.762 -1.905)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -3.556 0.762) (xy -1.905 0.762) (xy -2.794 -0.889) (xy -3.556 0.762)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type outline)
+					)
+				)
+			)
+			(symbol "QSE159_1_1"
+				(pin power_in line
+					(at 2.54 -7.62 90)
+					(length 2.54)
+					(name "GND"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin output line
+					(at 7.62 0 180)
+					(length 2.54)
+					(name "Out"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin power_in line
+					(at 2.54 7.62 270)
+					(length 2.54)
+					(name "Vcc"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "3"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+		)
+		(symbol "LED:IR204A"
+			(pin_numbers hide)
+			(pin_names
+				(offset 1.016) hide)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" "D"
+				(at 0.508 1.778 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left)
+				)
+			)
+			(property "Value" "IR204A"
+				(at -1.016 -2.794 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" "LED_THT:LED_D3.0mm_IRBlack"
+				(at 0 4.445 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" "http://www.everlight.com/file/ProductFile/IR204-A.pdf"
+				(at -1.27 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Description" "Infrared LED , 3mm LED package"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_keywords" "opto IR LED"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_fp_filters" "LED*3.0mm*IRBlack*"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(symbol "IR204A_0_1"
+				(polyline
+					(pts
+						(xy -2.54 1.27) (xy -2.54 -1.27)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0 0) (xy -2.54 0)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0.381 3.175) (xy -0.127 3.175)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -1.143 1.651) (xy 0.381 3.175) (xy 0.381 2.667)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0 1.27) (xy -2.54 0) (xy 0 -1.27) (xy 0 1.27)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -2.413 1.651) (xy -0.889 3.175) (xy -0.889 2.667) (xy -0.889 3.175) (xy -1.397 3.175)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(symbol "IR204A_1_1"
+				(pin passive line
+					(at -5.08 0 0)
+					(length 2.54)
+					(name "K"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 2.54 0 180)
+					(length 2.54)
+					(name "A"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+		)
 		(symbol "power:GND"
 			(power)
 			(pin_numbers hide)
@@ -963,28 +1522,16 @@
 		)
 	)
 	(junction
-		(at 221.615 36.195)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "005d9b9e-cd0c-4f68-9f89-5e6eab3a6de1")
-	)
-	(junction
 		(at 221.615 49.53)
 		(diameter 0)
 		(color 0 0 0 0)
-		(uuid "198cdd94-5f37-4745-90c9-87a3ab8c7715")
-	)
-	(junction
-		(at 221.615 47.625)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "1b8f7060-2d4d-44e6-b2a7-917da73c06a9")
+		(uuid "3582a8a4-fba3-4812-83f5-cc887a287d8b")
 	)
 	(junction
 		(at 221.615 81.28)
 		(diameter 0)
 		(color 0 0 0 0)
-		(uuid "263dfb77-30d4-47ed-9d35-a571dfc67e5f")
+		(uuid "3c0629cf-39b0-4a7d-910e-c435b52a1aa6")
 	)
 	(junction
 		(at 225.425 60.96)
@@ -1007,6 +1554,16 @@
 			(type default)
 		)
 		(uuid "113ec42f-bace-47b3-92d8-9e79f36912d5")
+	)
+	(wire
+		(pts
+			(xy 193.675 81.28) (xy 221.615 81.28)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "1fa1329e-1463-4de3-a7c5-eefc41f5fb61")
 	)
 	(wire
 		(pts
@@ -1050,56 +1607,6 @@
 	)
 	(wire
 		(pts
-			(xy 221.615 81.28) (xy 221.615 85.09)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "30a0746d-5762-46e9-b384-048afa794987")
-	)
-	(wire
-		(pts
-			(xy 221.615 34.29) (xy 221.615 36.195)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "400b5256-10ba-47c8-a66d-1438fd3c93f3")
-	)
-	(wire
-		(pts
-			(xy 221.615 47.625) (xy 221.615 49.53)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "498718c0-662a-4589-8fd1-3d5f182649be")
-	)
-	(wire
-		(pts
-			(xy 221.615 45.72) (xy 221.615 47.625)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "62a2de39-6e1a-41a2-b55d-6b9703e2fee8")
-	)
-	(wire
-		(pts
-			(xy 221.615 36.195) (xy 212.725 36.195)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "654c8a36-3b15-44ba-b314-850f19f4e950")
-	)
-	(wire
-		(pts
 			(xy 225.425 60.96) (xy 221.615 60.96)
 		)
 		(stroke
@@ -1130,16 +1637,6 @@
 	)
 	(wire
 		(pts
-			(xy 221.615 36.195) (xy 221.615 38.1)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "8372d9d6-fa50-4230-bb40-345a3fbdface")
-	)
-	(wire
-		(pts
 			(xy 221.615 49.53) (xy 225.425 49.53)
 		)
 		(stroke
@@ -1147,6 +1644,16 @@
 			(type default)
 		)
 		(uuid "91c8ad0b-4f0a-436e-b9ed-a0e37ebaf719")
+	)
+	(wire
+		(pts
+			(xy 221.615 90.805) (xy 221.615 92.71)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "9d84bde6-bcc6-416a-b0ea-a69ce722dccb")
 	)
 	(wire
 		(pts
@@ -1190,13 +1697,23 @@
 	)
 	(wire
 		(pts
-			(xy 212.725 47.625) (xy 221.615 47.625)
+			(xy 221.615 81.28) (xy 221.615 83.185)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "bc64b153-238e-4f1b-8411-be1bede51a08")
+		(uuid "bc3d5e56-2575-4fbf-8425-b1148dc37dd8")
+	)
+	(wire
+		(pts
+			(xy 221.615 47.625) (xy 221.615 49.53)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "d6cb716b-d88b-48a6-a7f6-b7818b506fc9")
 	)
 	(wire
 		(pts
@@ -1218,9 +1735,20 @@
 		)
 		(uuid "f39c4566-437a-4886-b10f-12107229b2cc")
 	)
+	(label "ISENSE"
+		(at 213.995 81.28 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "c100180d-3e57-47c7-99ca-f92e977df198")
+	)
 	(global_label "VIN_12V"
 		(shape input)
-		(at 221.615 34.29 90)
+		(at 221.615 47.625 90)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -1230,7 +1758,7 @@
 		)
 		(uuid "da74116e-19db-4d06-8b5d-2f057f578057")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 221.615 23.8057 90)
+			(at 221.615 37.1407 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1309,7 +1837,7 @@
 	)
 	(symbol
 		(lib_id "Device:R")
-		(at 221.615 41.91 0)
+		(at 221.615 86.995 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -1317,7 +1845,7 @@
 		(dnp no)
 		(uuid "3c5abc6e-8887-47c1-8ca6-5e32884e0d05")
 		(property "Reference" "R2"
-			(at 226.06 41.91 90)
+			(at 226.06 86.995 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1325,7 +1853,7 @@
 			)
 		)
 		(property "Value" "1W 20mR"
-			(at 224.155 41.91 90)
+			(at 224.155 86.995 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1333,7 +1861,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 219.837 41.91 90)
+			(at 219.837 86.995 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1342,7 +1870,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 221.615 41.91 0)
+			(at 221.615 86.995 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1351,7 +1879,7 @@
 			)
 		)
 		(property "Description" "Resistor"
-			(at 221.615 41.91 0)
+			(at 221.615 86.995 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1369,6 +1897,79 @@
 			(project ""
 				(path "/75427121-ba70-43d0-b78e-325c2cfaa959"
 					(reference "R2")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Interface_Optical:QSE159")
+		(at 274.955 24.13 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "5a8be762-e25f-404b-97ce-bff317cc7496")
+		(property "Reference" "U1"
+			(at 267.97 22.8599 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Value" "QSE159"
+			(at 267.97 25.3999 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Footprint" "OptoDevice:ONSemi_QSE15x"
+			(at 274.955 34.29 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "http://www.onsemi.com/pub/Collateral/QSE159-D.pdf"
+			(at 291.465 16.51 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Plastic Silicon Photosensor"
+			(at 274.955 24.13 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "3"
+			(uuid "eb6ab998-cd16-4578-b1f9-7a23557da4c2")
+		)
+		(pin "1"
+			(uuid "b1bc814e-4ce7-4eb6-be30-79d2f2b1807b")
+		)
+		(pin "2"
+			(uuid "2ed22a05-e9a3-4e56-9a02-1de0bc49dab2")
+		)
+		(instances
+			(project ""
+				(path "/75427121-ba70-43d0-b78e-325c2cfaa959"
+					(reference "U1")
 					(unit 1)
 				)
 			)
@@ -1531,6 +2132,76 @@
 		)
 	)
 	(symbol
+		(lib_id "LED:IR204A")
+		(at 255.905 22.86 270)
+		(mirror x)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "75c54573-1851-433f-8ad1-b63278ebeb8c")
+		(property "Reference" "D2"
+			(at 246.38 27.94 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "IR204A"
+			(at 244.475 24.765 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "LED_THT:LED_D3.0mm_IRBlack"
+			(at 260.35 22.86 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "http://www.everlight.com/file/ProductFile/IR204-A.pdf"
+			(at 255.905 24.13 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Infrared LED , 3mm LED package"
+			(at 255.905 22.86 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "2"
+			(uuid "90614845-2c5b-4d42-bb28-52e1241ab456")
+		)
+		(pin "1"
+			(uuid "e043520e-21f9-4db2-b88b-d10e61475fd6")
+		)
+		(instances
+			(project ""
+				(path "/75427121-ba70-43d0-b78e-325c2cfaa959"
+					(reference "D2")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "FQD50N06:FQD50N06")
 		(at 217.805 71.12 0)
 		(unit 1)
@@ -1540,7 +2211,7 @@
 		(dnp no)
 		(uuid "d3a6c6e8-3f77-4adb-bfd5-e9842c512d4f")
 		(property "Reference" "Q1"
-			(at 217.805 78.105 90)
+			(at 214.63 74.295 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1549,7 +2220,7 @@
 			)
 		)
 		(property "Value" "FQD50N06"
-			(at 219.71 85.725 90)
+			(at 207.01 72.39 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1671,7 +2342,7 @@
 	)
 	(symbol
 		(lib_id "power:GND")
-		(at 221.615 85.09 0)
+		(at 221.615 92.71 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -1680,7 +2351,7 @@
 		(fields_autoplaced yes)
 		(uuid "fcc6c0b1-d810-43ad-8c9a-f4e9da1c1deb")
 		(property "Reference" "#PWR01"
-			(at 221.615 91.44 0)
+			(at 221.615 99.06 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1689,7 +2360,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 221.615 90.17 0)
+			(at 221.615 97.79 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1697,7 +2368,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 221.615 85.09 0)
+			(at 221.615 92.71 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1706,7 +2377,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 221.615 85.09 0)
+			(at 221.615 92.71 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1715,7 +2386,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 221.615 85.09 0)
+			(at 221.615 92.71 0)
 			(effects
 				(font
 					(size 1.27 1.27)

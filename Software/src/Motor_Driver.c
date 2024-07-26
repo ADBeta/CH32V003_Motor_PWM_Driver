@@ -1,11 +1,15 @@
 /******************************************************************************
 * Medium Current PWM Motor Controller, using the CH32V003 MCU
+* Has Over-Current protection, adjustable PWM setting
+* TODO: RPM hold mode
 *
 * Notes:
 *	PWM runs at 190KHz, with 8bits of accuracy
 *
 * Pinout:
 * 	TODO: UART?
+* 	TODO: Op Amp
+* 	TODO: RPM Sensor
 *
 * 	D3 (A4)		- Analog Potentiometer Input
 *	D4			- PWM Motor Output
@@ -39,19 +43,21 @@ int main()
 {
 	SystemInit();
 
+	// Set up PD3 for Analog Reading
 	gpio_init_adc(ADC_CLOCK_DIV_2, ADC_SAMPLE_CYCLES_73);
-
-	gpio_set_mode(GPIO_A2, INPUT_ANALOG);
 	gpio_set_mode(GPIO_A4, INPUT_ANALOG);
+
+
 
 	pwm_init();
 	pwm_set_duty(128);
 
-	while(1) {
-		uint16_t ch1 = gpio_analog_read(GPIO_ADC_A2);
-		uint16_t ch2 = gpio_analog_read(GPIO_ADC_A4);
 
-		printf("ch1: %d\nch2: %d\n\n", ch1, ch2);
+	while(1) {
+		// Divide the input to be within the range of the PWM output
+		uint16_t pwm_val = gpio_analog_read(GPIO_ADC_A4) / 4;
+
+		printf("%d\n", pwm_val);
 		Delay_Ms(100);
 	}
 }
