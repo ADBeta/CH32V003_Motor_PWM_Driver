@@ -4,7 +4,8 @@
 * TODO: RPM hold mode
 *
 * Notes:
-*	PWM runs at 190KHz, with 8bits of accuracy
+* 	TODO: Set the clock to meet this
+*	PWM runs at ~40KHz, with 8bits of accuracy
 *
 * Pinout:
 * 	TODO: UART?
@@ -12,6 +13,7 @@
 * 	TODO: RPM Sensor
 *
 * 	D3 (A4)		- Analog Potentiometer Input
+*   TODO: D4 Needs to be the OpAmp Input
 *	D4			- PWM Motor Output
 *
 * ADBeta (c)	20 Jul 2024
@@ -43,6 +45,19 @@ int main()
 {
 	SystemInit();
 
+	gpio_set_mode(GPIO_PA1, INPUT_FLOATING);
+	gpio_set_mode(GPIO_PA2, INPUT_FLOATING);
+	gpio_set_mode(GPIO_PD4, INPUT_FLOATING);
+
+	EXTEN->EXTEN_CTR |=  EXTEN_OPA_EN;
+
+
+	while(1)
+	{
+
+	}
+
+	/*
 	// Set up PD3 for Analog Reading
 	gpio_init_adc(ADC_CLOCK_DIV_2, ADC_SAMPLE_CYCLES_73);
 	gpio_set_mode(GPIO_A4, INPUT_ANALOG);
@@ -60,11 +75,13 @@ int main()
 		printf("%d\n", pwm_val);
 		Delay_Ms(100);
 	}
+	*/
 }
 
 
 
 /*** Functions ***************************************************************/
+// TODO: Change PWM output pin
 void pwm_init(void)
 {
 	// Enable TIM2 Clock	
