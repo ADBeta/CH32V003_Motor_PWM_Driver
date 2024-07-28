@@ -9,8 +9,11 @@
 *
 * Pinout:
 * 	TODO: UART?
-* 	TODO: Op Amp
 * 	TODO: RPM Sensor
+* 	
+* TODO:
+*	A1          - Op-Amp Negative
+*	A2          - Op-Amp Positive
 *
 * 	C0          - PWM Motor Output  (TIM2 Channel 3)
 * 	D3 (A4)		- Analog Potentiometer Input

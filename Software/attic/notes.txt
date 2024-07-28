@@ -6,7 +6,18 @@ PD4 Analog input directly????
 
 Op Amp very non-linear. Need to test more. 
 Seems lower gain = better stability.
+Higher current draw seems to provide better stability
 
 Aim for 20x, 10x if unstable
 
-Bias input??
+
+470/4k7 - 11x gain - 0.65mA
+
+Input Voltage, Board 1 Output Voltage, Board 1 Gain, Board 2 Output Voltage, Board 2 Gain
+0.05,
+0.10,
+0.15,
+0.20,
+0.25,
+0.30,
+
