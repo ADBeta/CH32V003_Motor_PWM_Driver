@@ -12,7 +12,6 @@ Aim for 20x, 10x if unstable
 
 
 470/4k7 - 11x gain - 0.65mA
-
 Input Voltage, Board 1 Output Voltage, Board 1 Gain, Board 2 Output Voltage, Board 2 Gain
 0.05, 0.64, 12.8
 0.10, 1.18, 11.8
@@ -21,3 +20,12 @@ Input Voltage, Board 1 Output Voltage, Board 1 Gain, Board 2 Output Voltage, Boa
 0.25, 2.82, 11.3
 0.28, 3.15, 11.2
 
+220/4k7 - 22.3 gain - 0.67mA
+Input Voltage, Board 1 Output Voltage, Board 1 Gain, Board 2 Output Voltage, Board 2 Gain
+0.01,
+0.02,
+0.04,
+0.06,
+0.08,
+0.10,
+0.15,

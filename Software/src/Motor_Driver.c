@@ -62,10 +62,10 @@ int main()
 	}
 	*/
 	
-	// Set up PD3 for Analog Reading
+	// Set up PD3 and PD4 for Analog Reading
 	gpio_init_adc(ADC_CLOCK_DIV_2, ADC_SAMPLE_CYCLES_73);
 	gpio_set_mode(GPIO_A4, INPUT_ANALOG);
-
+	gpio_set_mode(GPIO_A7, INPUT_ANALOG);
 
 
 	pwm_init();
