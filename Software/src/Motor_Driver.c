@@ -1,5 +1,5 @@
 /******************************************************************************
-* Medium Current PWM Motor Controller, using the CH32V003 MCU
+* High(ish) Current PWM Motor Controller, using the CH32V003 MCU
 * Has Over-Current protection, adjustable PWM setting
 * TODO: RPM hold mode
 *
@@ -26,6 +26,13 @@
 
 #include <stdio.h>
 
+/*** Pin Definitions *********************************************************/
+#define OPAMP_NEG GPIO_PA1
+#define OPAMP_POS GPIO_PA2
+#define OPAMP_OUT GPIO_PD4
+
+
+
 /*** Forward Declarations ****************************************************/
 /// @breif initialises the ADC for the Potentiometer, and the Current Sensor
 /// @param none
@@ -48,28 +55,26 @@ int main()
 {
 	SystemInit();
 
-	/*
-	gpio_set_mode(GPIO_PA1, INPUT_FLOATING);
-	gpio_set_mode(GPIO_PA2, INPUT_FLOATING);
-	gpio_set_mode(GPIO_PD4, INPUT_FLOATING);
+	// Set the Op-Amp Input Positive and Negative to Floating
+	gpio_set_mode(OPAMP_NEG, INPUT_FLOATING);
+	gpio_set_mode(OPAMP_POS, INPUT_FLOATING);
 
+	// Enable the Op-Amp, and set it to use the default OPP0 and OPN0 Pins TODO:
 	EXTEN->EXTEN_CTR |=  EXTEN_OPA_EN;
 
-
-	while(1)
-	{
-
-	}
-	*/
-	
-	// Set up PD3 and PD4 for Analog Reading
+	// Initiliase the ADC to use 24MHz clock, and Sample for 73 Clock Cycles
 	gpio_init_adc(ADC_CLOCK_DIV_2, ADC_SAMPLE_CYCLES_73);
+	// Set PD3/A4 and PD4/A7 to Analog Inputs TODO:
 	gpio_set_mode(GPIO_A4, INPUT_ANALOG);
-	gpio_set_mode(GPIO_A7, INPUT_ANALOG);
+	//gpio_set_mode(GPIO_A7, INPUT_ANALOG);
 
-
+	// Initialise the PWM to use TIM2 Channel 3 (PC0), at ~47KHz
 	pwm_init();
 
+
+
+
+	
 	while(1) {
 		// Divide the input to be within the range of the PWM output
 		uint16_t pwm_val = gpio_analog_read(GPIO_ADC_A4) / 4;
@@ -83,9 +88,10 @@ int main()
 
 
 /*** Functions ***************************************************************/
-// NOTE: Sets TIM2 PC0 as the PWM Output Pin (Channel 3)
 void pwm_init(void)
 {
+	// NOTE: Uses TIM2 Channel 3 (PC0) as the PWM Output pin
+
 	// Enable TIM2 Clock
 	RCC->APB1PCENR |= RCC_APB1Periph_TIM2;
 
@@ -118,7 +124,6 @@ void pwm_init(void)
 	TIM2->CTLR1 |= TIM_CEN;
 }
 
-// NOTE: PC0 is PWM Output
 void pwm_set_duty(uint32_t duty)
 {
 	TIM2->CH3CVR = duty;
