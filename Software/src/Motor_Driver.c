@@ -5,21 +5,19 @@
 *
 * Notes:
 *	PWM runs at ~46KHz, with 8bits of accuracy
-*	Op-Amp is TODO:
+*	Op-Amp is set to a gain of 22, 5A should be ~ TODO:
 *
 * Pinout:
 * 	TODO: UART?
 * 	TODO: RPM Sensor
 * 	
-* TODO:
 *	A1          - Op-Amp Negative
 *	A2          - Op-Amp Positive
-*
 * 	C0          - PWM Motor Output  (TIM2 Channel 3)
 * 	D3 (A4)		- Analog Potentiometer Input
 * 	D4 (A7)     - Analog Op-Amp Input Value
 *
-* ADBeta (c)	28 Jul 2024
+* ADBeta (c)	31 Jul 2024
 ******************************************************************************/
 #include "ch32v003fun.h"
 #include "lib_GPIOCTRL.h"
@@ -29,7 +27,9 @@
 /*** Pin Definitions *********************************************************/
 #define OPAMP_NEG GPIO_PA1
 #define OPAMP_POS GPIO_PA2
-#define OPAMP_OUT GPIO_PD4
+#define OPAMP_OUT GPIO_A7
+
+#define MODE_POT  GPIO_A4
 
 
 
@@ -59,29 +59,30 @@ int main()
 	gpio_set_mode(OPAMP_NEG, INPUT_FLOATING);
 	gpio_set_mode(OPAMP_POS, INPUT_FLOATING);
 
-	// Enable the Op-Amp, and set it to use the default OPP0 and OPN0 Pins TODO:
+	// Set the Default Op-Amp pins to OPP0 and OPN0, then Enable the Op-Amp
+	EXTEN->EXTEN_CTR &= ~(EXTEN_OPA_NSEL | EXTEN_OPA_PSEL); 
 	EXTEN->EXTEN_CTR |=  EXTEN_OPA_EN;
 
 	// Initiliase the ADC to use 24MHz clock, and Sample for 73 Clock Cycles
 	gpio_init_adc(ADC_CLOCK_DIV_2, ADC_SAMPLE_CYCLES_73);
-	// Set PD3/A4 and PD4/A7 to Analog Inputs TODO:
-	gpio_set_mode(GPIO_A4, INPUT_ANALOG);
-	//gpio_set_mode(GPIO_A7, INPUT_ANALOG);
+	// Set PD3/A4 and PD4/A7 to Analog Inputs
+	gpio_set_mode(MODE_POT,  INPUT_ANALOG);
+	gpio_set_mode(OPAMP_OUT, INPUT_ANALOG);
 
 	// Initialise the PWM to use TIM2 Channel 3 (PC0), at ~47KHz
 	pwm_init();
 
-
-
-
-	
+	/*** Main Control Loop ***************************************************/
 	while(1) {
+
+
+
 		// Divide the input to be within the range of the PWM output
 		uint16_t pwm_val = gpio_analog_read(GPIO_ADC_A4) / 4;
 		pwm_set_duty(pwm_val);
 
-		printf("%d\n", pwm_val);
 		Delay_Ms(100);
+	
 	}
 }
 
