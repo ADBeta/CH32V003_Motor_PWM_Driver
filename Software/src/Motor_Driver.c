@@ -20,7 +20,7 @@
 * ADBeta (c)	31 Jul 2024
 ******************************************************************************/
 #include "ch32v003fun.h"
-#include "lib_GPIOCTRL.h"
+#include "lib_gpioctrl.h"
 
 #include <stdio.h>
 
@@ -34,11 +34,6 @@
 
 
 /*** Forward Declarations ****************************************************/
-/// @breif initialises the ADC for the Potentiometer, and the Current Sensor
-/// @param none
-/// @return none
-void adc_init(void);
-
 /// @breif Initialised TIM2 Channel 3 (C0) To be a PWM Output, active HIGH.
 /// Autoreload is set to 254, Capture mode is 0b111, PWM2.
 /// @param none
