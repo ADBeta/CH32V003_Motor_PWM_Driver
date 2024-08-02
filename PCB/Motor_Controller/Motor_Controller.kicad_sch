@@ -6,7 +6,7 @@
 	(paper "A4")
 	(title_block
 		(title "CH32V003 PWM Motor Driver")
-		(date "2024-07-18")
+		(date "2024-08-01")
 		(rev "Mk1")
 		(company "ADBeta")
 		(comment 1 "5A Current Limit ")
@@ -174,16 +174,15 @@
 				)
 			)
 		)
-		(symbol "Device:C"
+		(symbol "Device:C_Small"
 			(pin_numbers hide)
 			(pin_names
-				(offset 0.254)
-			)
+				(offset 0.254) hide)
 			(exclude_from_sim no)
 			(in_bom yes)
 			(on_board yes)
 			(property "Reference" "C"
-				(at 0.635 2.54 0)
+				(at 0.254 1.778 0)
 				(effects
 					(font
 						(size 1.27 1.27)
@@ -191,8 +190,8 @@
 					(justify left)
 				)
 			)
-			(property "Value" "C"
-				(at 0.635 -2.54 0)
+			(property "Value" "C_Small"
+				(at 0.254 -2.032 0)
 				(effects
 					(font
 						(size 1.27 1.27)
@@ -201,7 +200,7 @@
 				)
 			)
 			(property "Footprint" ""
-				(at 0.9652 -3.81 0)
+				(at 0 0 0)
 				(effects
 					(font
 						(size 1.27 1.27)
@@ -218,7 +217,7 @@
 					(hide yes)
 				)
 			)
-			(property "Description" "Unpolarized capacitor"
+			(property "Description" "Unpolarized capacitor, small symbol"
 				(at 0 0 0)
 				(effects
 					(font
@@ -227,7 +226,7 @@
 					(hide yes)
 				)
 			)
-			(property "ki_keywords" "cap capacitor"
+			(property "ki_keywords" "capacitor cap"
 				(at 0 0 0)
 				(effects
 					(font
@@ -245,13 +244,13 @@
 					(hide yes)
 				)
 			)
-			(symbol "C_0_1"
+			(symbol "C_Small_0_1"
 				(polyline
 					(pts
-						(xy -2.032 -0.762) (xy 2.032 -0.762)
+						(xy -1.524 -0.508) (xy 1.524 -0.508)
 					)
 					(stroke
-						(width 0.508)
+						(width 0.3302)
 						(type default)
 					)
 					(fill
@@ -260,10 +259,10 @@
 				)
 				(polyline
 					(pts
-						(xy -2.032 0.762) (xy 2.032 0.762)
+						(xy -1.524 0.508) (xy 1.524 0.508)
 					)
 					(stroke
-						(width 0.508)
+						(width 0.3048)
 						(type default)
 					)
 					(fill
@@ -271,10 +270,10 @@
 					)
 				)
 			)
-			(symbol "C_1_1"
+			(symbol "C_Small_1_1"
 				(pin passive line
-					(at 0 3.81 270)
-					(length 2.794)
+					(at 0 2.54 270)
+					(length 2.032)
 					(name "~"
 						(effects
 							(font
@@ -291,154 +290,9 @@
 					)
 				)
 				(pin passive line
-					(at 0 -3.81 90)
-					(length 2.794)
+					(at 0 -2.54 90)
+					(length 2.032)
 					(name "~"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "2"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-			)
-		)
-		(symbol "Device:D_Schottky"
-			(pin_numbers hide)
-			(pin_names
-				(offset 1.016) hide)
-			(exclude_from_sim no)
-			(in_bom yes)
-			(on_board yes)
-			(property "Reference" "D"
-				(at 0 2.54 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Value" "D_Schottky"
-				(at 0 -2.54 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Footprint" ""
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Datasheet" "~"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Description" "Schottky diode"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "ki_keywords" "diode Schottky"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "ki_fp_filters" "TO-???* *_Diode_* *SingleDiode* D_*"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(symbol "D_Schottky_0_1"
-				(polyline
-					(pts
-						(xy 1.27 0) (xy -1.27 0)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 1.27 1.27) (xy 1.27 -1.27) (xy -1.27 0) (xy 1.27 1.27)
-					)
-					(stroke
-						(width 0.254)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy -1.905 0.635) (xy -1.905 1.27) (xy -1.27 1.27) (xy -1.27 -1.27) (xy -0.635 -1.27) (xy -0.635 -0.635)
-					)
-					(stroke
-						(width 0.254)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-			)
-			(symbol "D_Schottky_1_1"
-				(pin passive line
-					(at -3.81 0 0)
-					(length 2.54)
-					(name "K"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 3.81 0 180)
-					(length 2.54)
-					(name "A"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -560,6 +414,151 @@
 					(at 0 -3.81 90)
 					(length 1.27)
 					(name "~"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+		)
+		(symbol "Diode:SS34"
+			(pin_numbers hide)
+			(pin_names
+				(offset 1.016) hide)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" "D"
+				(at 0 2.54 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" "SS34"
+				(at 0 -2.54 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" "Diode_SMD:D_SMA"
+				(at 0 -4.445 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" "https://www.vishay.com/docs/88751/ss32.pdf"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Description" "40V 3A Schottky Diode, SMA"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_keywords" "diode Schottky"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_fp_filters" "D*SMA*"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(symbol "SS34_0_1"
+				(polyline
+					(pts
+						(xy 1.27 0) (xy -1.27 0)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 1.27 1.27) (xy 1.27 -1.27) (xy -1.27 0) (xy 1.27 1.27)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -1.905 0.635) (xy -1.905 1.27) (xy -1.27 1.27) (xy -1.27 -1.27) (xy -0.635 -1.27) (xy -0.635 -0.635)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(symbol "SS34_1_1"
+				(pin passive line
+					(at -3.81 0 0)
+					(length 2.54)
+					(name "K"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 3.81 0 180)
+					(length 2.54)
+					(name "A"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -1545,7 +1544,7 @@
 	)
 	(wire
 		(pts
-			(xy 193.675 81.28) (xy 221.615 81.28)
+			(xy 207.01 81.28) (xy 221.615 81.28)
 		)
 		(stroke
 			(width 0)
@@ -1602,6 +1601,16 @@
 			(type default)
 		)
 		(uuid "2e1dcf9e-1dce-4351-9b5e-1748ed5918c1")
+	)
+	(wire
+		(pts
+			(xy 24.765 47.625) (xy 45.72 47.625)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "39041969-31df-4675-8168-01f1914309c9")
 	)
 	(wire
 		(pts
@@ -1665,7 +1674,17 @@
 	)
 	(wire
 		(pts
-			(xy 205.105 71.12) (xy 213.995 71.12)
+			(xy 66.04 45.085) (xy 86.995 45.085)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "7fbe0cba-59ab-4a15-9de5-0b29c854c7ab")
+	)
+	(wire
+		(pts
+			(xy 199.39 71.12) (xy 213.995 71.12)
 		)
 		(stroke
 			(width 0)
@@ -1695,7 +1714,7 @@
 	)
 	(wire
 		(pts
-			(xy 225.425 62.865) (xy 225.425 60.96)
+			(xy 225.425 65.405) (xy 225.425 60.96)
 		)
 		(stroke
 			(width 0)
@@ -1833,7 +1852,39 @@
 		)
 		(uuid "f39c4566-437a-4886-b10f-12107229b2cc")
 	)
-	(label "CONTROL_POT"
+	(wire
+		(pts
+			(xy 24.765 45.085) (xy 45.72 45.085)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "f4941e80-d43a-4ef9-94a1-73cb602d5fe4")
+	)
+	(rectangle
+		(start 91.44 54.61)
+		(end 97.79 76.2)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(fill
+			(type none)
+		)
+		(uuid 81c4d4c4-24dc-443a-8340-bae2b8450e6d)
+	)
+	(text "OpAmp - 22 Gain"
+		(exclude_from_sim no)
+		(at 99.06 65.405 90)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+		(uuid "9b973c50-bd17-4277-896a-6de8a1cfb3e2")
+	)
+	(label "INPUT_POT"
 		(at 86.995 50.165 180)
 		(fields_autoplaced yes)
 		(effects
@@ -1843,6 +1894,28 @@
 			(justify right bottom)
 		)
 		(uuid "099730fd-16f0-4cee-8800-a46fba85a2d3")
+	)
+	(label "SCL"
+		(at 24.765 47.625 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "21d49c02-6b02-468b-a81b-129421bdd06d")
+	)
+	(label "SDA"
+		(at 24.765 45.085 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "6e8a915c-fc42-4b20-b252-7c1ace313c2b")
 	)
 	(label "NRST"
 		(at 86.995 60.325 180)
@@ -1855,7 +1928,18 @@
 		)
 		(uuid "aa8f32b5-e57d-4797-a8de-55b4520f8cde")
 	)
-	(label "ISENSE_AMPED"
+	(label "SWIO"
+		(at 86.995 45.085 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "ab149dc4-ef7d-4d29-8ef8-2f0c00a92c3c")
+	)
+	(label "ISENSE_HV"
 		(at 86.995 52.705 180)
 		(fields_autoplaced yes)
 		(effects
@@ -1865,6 +1949,28 @@
 			(justify right bottom)
 		)
 		(uuid "b99ec83e-a084-4a38-8b3f-bdb71cdbd257")
+	)
+	(label "MOTOR_PWM"
+		(at 24.765 42.545 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "d21db028-8416-43f5-bb9c-cf383383b888")
+	)
+	(label "ISENSE_LV"
+		(at 207.01 81.28 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "e3230eb7-8e97-4fde-98b5-d87ef7b6c283")
 	)
 	(label "ISENSE_LV"
 		(at 86.995 67.945 180)
@@ -1876,17 +1982,6 @@
 			(justify right bottom)
 		)
 		(uuid "e4d50f81-f626-4279-8700-774b834d3193")
-	)
-	(label "MOTOR_PWM"
-		(at 24.765 42.545 0)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "f5461b58-dbb4-4ff3-b5f1-061004e6ebbb")
 	)
 	(global_label "VIN_3V3"
 		(shape input)
@@ -1933,73 +2028,6 @@
 		)
 	)
 	(symbol
-		(lib_id "Device:C")
-		(at 225.425 66.675 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "125e5776-1799-477d-9559-fe3ac1a1e3fb")
-		(property "Reference" "C1"
-			(at 231.14 66.675 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "100nF"
-			(at 229.235 66.675 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 226.3902 70.485 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 225.425 66.675 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Unpolarized capacitor"
-			(at 225.425 66.675 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "64032c4f-fef3-4f02-a3e4-d73fa0086009")
-		)
-		(pin "2"
-			(uuid "ae09ae63-571f-4b4f-be29-cb486d286341")
-		)
-		(instances
-			(project ""
-				(path "/75427121-ba70-43d0-b78e-325c2cfaa959"
-					(reference "C1")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "Device:R")
 		(at 221.615 86.995 0)
 		(unit 1)
@@ -2009,7 +2037,7 @@
 		(dnp no)
 		(uuid "3c5abc6e-8887-47c1-8ca6-5e32884e0d05")
 		(property "Reference" "R2"
-			(at 226.06 86.995 90)
+			(at 221.615 86.995 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2076,7 +2104,7 @@
 		(dnp no)
 		(uuid "46c20274-9b95-45e2-96e3-4cd8948fcb96")
 		(property "Reference" "R3"
-			(at 99.695 59.69 90)
+			(at 93.98 59.69 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2084,7 +2112,7 @@
 			)
 		)
 		(property "Value" "4K7"
-			(at 97.79 59.69 90)
+			(at 96.52 59.69 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2205,6 +2233,140 @@
 		)
 	)
 	(symbol
+		(lib_id "Diode:SS34")
+		(at 225.425 55.245 270)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "8b3a61f2-c8f2-4b57-a555-7362131282ca")
+		(property "Reference" "D1"
+			(at 229.87 55.245 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "SS34"
+			(at 227.965 55.245 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Diode_SMD:D_SMA"
+			(at 220.98 55.245 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "https://www.vishay.com/docs/88751/ss32.pdf"
+			(at 225.425 55.245 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "40V 3A Schottky Diode, SMA"
+			(at 225.425 55.245 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "2"
+			(uuid "e6232d1b-6388-4625-bf77-ea05b8d28250")
+		)
+		(pin "1"
+			(uuid "db6d16cd-7fe5-4fb9-a4ff-a81b9fe1e730")
+		)
+		(instances
+			(project "Motor_Controller"
+				(path "/75427121-ba70-43d0-b78e-325c2cfaa959"
+					(reference "D1")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:C_Small")
+		(at 225.425 67.945 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "9dc1ae65-dfdb-4383-9adb-ebda95f42227")
+		(property "Reference" "C1"
+			(at 229.87 67.945 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "100nF"
+			(at 227.965 67.945 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 225.425 67.945 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 225.425 67.945 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Unpolarized capacitor, small symbol"
+			(at 225.425 67.945 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "82269324-20d2-4fb5-86cd-2af5a00210e4")
+		)
+		(pin "2"
+			(uuid "bd00c1e1-ea5a-4b79-8208-82f03d22154c")
+		)
+		(instances
+			(project "Motor_Controller"
+				(path "/75427121-ba70-43d0-b78e-325c2cfaa959"
+					(reference "C1")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "power:GND")
 		(at 93.98 76.835 0)
 		(unit 1)
@@ -2265,73 +2427,6 @@
 			(project "Motor_Controller"
 				(path "/75427121-ba70-43d0-b78e-325c2cfaa959"
 					(reference "#PWR03")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:D_Schottky")
-		(at 225.425 55.245 270)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "abd22327-d04f-4ae1-a838-ea2fcd5f0f1e")
-		(property "Reference" "D1"
-			(at 231.14 55.245 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "D_Schottky"
-			(at 229.235 55.245 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 225.425 55.245 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 225.425 55.245 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Schottky diode"
-			(at 225.425 55.245 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "24cb6693-8273-4018-928e-beeb7dbcc130")
-		)
-		(pin "2"
-			(uuid "3721e471-8790-4864-a47a-9c40d3a7b5a6")
-		)
-		(instances
-			(project ""
-				(path "/75427121-ba70-43d0-b78e-325c2cfaa959"
-					(reference "D1")
 					(unit 1)
 				)
 			)
@@ -2608,7 +2703,7 @@
 		(dnp no)
 		(uuid "eb9eb849-4865-4abf-9e3d-77c2f96a7046")
 		(property "Reference" "R1"
-			(at 231.14 75.565 90)
+			(at 225.425 75.565 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2616,7 +2711,7 @@
 			)
 		)
 		(property "Value" "100R"
-			(at 229.235 75.565 90)
+			(at 227.965 75.565 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2675,7 +2770,7 @@
 		(dnp no)
 		(uuid "fabd2e14-a631-4a5d-9143-83c0f2be049d")
 		(property "Reference" "R4"
-			(at 99.695 71.12 90)
+			(at 93.98 71.12 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2683,7 +2778,7 @@
 			)
 		)
 		(property "Value" "220R"
-			(at 97.79 71.12 90)
+			(at 96.52 71.12 90)
 			(effects
 				(font
 					(size 1.27 1.27)
