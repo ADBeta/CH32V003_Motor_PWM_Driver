@@ -31,6 +31,7 @@
 
 #define MODE_POT  GPIO_A4
 
+#define PWM_OUT   GPIO_PC0
 
 
 /*** Forward Declarations ****************************************************/
